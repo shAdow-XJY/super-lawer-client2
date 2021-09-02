@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/message/message",
+    "pages/file/file",
+    "pages/user/user",
+    "pages/user/userInfo",
+    "pages/task/task",
+    "pages/register/register"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "SuperLawyer",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "消息",
+        "pagePath": "pages/message/message",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-active.png"
+      },
+      {
+        "text": "业务",
+        "pagePath": "pages/task/task",
+        "iconPath": "static/recevingOrder.png",
+        "selectedIconPath": "static/recevingOrder-active.png"
+      },
+      {
+        "text": "文件",
+        "pagePath": "pages/file/file",
+        "iconPath": "static/placeOrder.png",
+        "selectedIconPath": "static/placeOrder-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/user",
+        "iconPath": "static/person.png",
+        "selectedIconPath": "static/person-active.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
