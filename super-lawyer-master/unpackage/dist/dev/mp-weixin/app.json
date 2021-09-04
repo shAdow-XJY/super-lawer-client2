@@ -4,9 +4,10 @@
     "pages/message/message",
     "pages/file/file",
     "pages/user/user",
-    "pages/user/userInfo",
     "pages/task/task",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/userInfo/userInfo",
+    "pages/userApply/userApply"
   ],
   "subPackages": [],
   "window": {

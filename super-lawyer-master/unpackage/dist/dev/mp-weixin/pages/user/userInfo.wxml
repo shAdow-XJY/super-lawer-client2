@@ -1,1 +1,0 @@
-<view class="list_menu"><block wx:for="{{listMenu}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="row"><image src="{{item.icon}}" mode="aspectFill"></image><text>{{item.name}}</text><text class="footer">{{item.content}}</text></view></block></view>

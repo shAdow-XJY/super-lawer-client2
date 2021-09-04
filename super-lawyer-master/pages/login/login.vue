@@ -29,8 +29,8 @@
 		data(){
 			return{
 				form:{
-					passport:"string",
-					password:"string"
+					passport:"test",
+					password:"test"
 				}
 			}
 		},

@@ -36,15 +36,6 @@
             }
             
         }
-		,{
-		    "path" : "pages/user/userInfo",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		}
         ,{
             "path" : "pages/task/task",
             "style" :                                                                                    
@@ -56,6 +47,24 @@
         }
         ,{
             "path" : "pages/register/register",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/userInfo/userInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/userApply/userApply",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
