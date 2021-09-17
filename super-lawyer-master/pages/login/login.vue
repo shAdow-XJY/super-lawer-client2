@@ -24,13 +24,14 @@
 
 <script>
 	import {postLogin} from "../../network/user.js"
+	import {mapState,mapMutations} from 'vuex'
 	export default{
 		
 		data(){
 			return{
 				form:{
-					passport:"test",
-					password:"test"
+					passport:"010",
+					password:"123456"
 				}
 			}
 		},
@@ -39,13 +40,15 @@
 				let params={
 					passport:this.form.passport,
 					pwd:this.form.password
-				}
+				};			
 				postLogin(params).then(res=>{
-					 console.log(res)
+					 console.log(res.data.data)
 					if(res.data.code==1)
 					{
 						getApp().globalData.user_type=res.data.data.user_type;
 						getApp().globalData.user_token=res.data.data.token;
+						console.log(getApp().globalData.user_type)
+						this.setRole(getApp().globalData.user_type)
 						// console.log(res.data.data.token);
 						// console.log(getApp().globalData.user_token);
 						this.$refs.tip.show({
@@ -59,10 +62,12 @@
 							})
 						},1500)
 						
+						
 					}
 					
 				})
-			}
+			},
+			...mapMutations(['setRole']),
 		}
 	}
 </script>

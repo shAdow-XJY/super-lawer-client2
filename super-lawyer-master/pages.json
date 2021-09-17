@@ -72,6 +72,59 @@
             }
             
         }
+        ,{
+            "path" : "pages/toDoThings/toDoThings",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/ProjectDetail/ProjectDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }        
+        }      
+        ,{
+            "path" : "pages/test/test",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/service/serviceFangan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/enterprise/enterpriseDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/message/enterpriseMessage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -103,6 +156,13 @@
 			"pagePath":"pages/user/user",
 			"iconPath":"static/person.png",
 			"selectedIconPath":"static/person-active.png"
-		}]
+		},
+		{
+			"text":"企业消息",
+			"pagePath":"pages/message/enterpriseMessage",
+			"iconPath":"static/person.png",
+			"selectedIconPath":"static/person-active.png"
+		}
+		]
 	}
 }

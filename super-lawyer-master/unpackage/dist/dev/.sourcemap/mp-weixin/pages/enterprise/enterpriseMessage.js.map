@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,yO;AACAA,UAAU,CAACC,0BAAD,CAAV,C","file":"pages/enterprise/enterpriseMessage.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/enterprise/enterpriseMessage.vue'\ncreatePage(Page)"],"sourceRoot":""}

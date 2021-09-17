@@ -1,0 +1,19 @@
+
+.u-border-bottom::after{
+		border-bottom-width: 2px;
+}
+.infolist{
+	margin-top: 20rpx;
+}
+.license .title{
+		font-size: 30rpx;
+		font-weight:520;
+		font-family: "微软雅黑";
+		color: #000000;
+		margin:40rpx 30rpx;
+}
+.license image{
+	margin-top: 20rpx;
+	margin-left: 50rpx;
+}
+

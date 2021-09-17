@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view>		
 		<view class="header">
 			<view class="bg">
 				<view class="box">
@@ -52,7 +52,7 @@
 				<button class="exit_bt">退出登录</button>
 			</view>
 		</view>
-
+		<u-tabbar :list="tabBarList"></u-tabbar>
 	</view>
 </template>
 
@@ -63,6 +63,10 @@
 	import {
 		getInfo
 	} from "../../network/user.js"
+	import{
+		formateDate
+	}from "../../utils/util.js"
+	import {mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -92,13 +96,13 @@
 					console.log(this.user);
 					console.log(res.data.data.basic_info);
 					console.log(this.user.register_time);
+					this.user.register_time = formateDate(this.user.register_time)
 					console.log(this.user_type)
 				}
 
 			})
 
 		},
-
 		methods: {
 			clickInfo() {
 
@@ -114,6 +118,11 @@
 				})
 			}
 		},
+		computed:{
+			...mapGetters([
+				'tabBarList'
+			])
+		}
 	}
 </script>
 

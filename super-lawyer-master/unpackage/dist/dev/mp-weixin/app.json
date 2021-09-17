@@ -7,7 +7,13 @@
     "pages/task/task",
     "pages/register/register",
     "pages/userInfo/userInfo",
-    "pages/userApply/userApply"
+    "pages/userApply/userApply",
+    "pages/toDoThings/toDoThings",
+    "pages/ProjectDetail/ProjectDetail",
+    "pages/test/test",
+    "pages/service/serviceFangan",
+    "pages/enterprise/enterpriseDetail",
+    "pages/message/enterpriseMessage"
   ],
   "subPackages": [],
   "window": {
@@ -41,8 +47,15 @@
         "pagePath": "pages/user/user",
         "iconPath": "static/person.png",
         "selectedIconPath": "static/person-active.png"
+      },
+      {
+        "text": "企业消息",
+        "pagePath": "pages/message/enterpriseMessage",
+        "iconPath": "static/person.png",
+        "selectedIconPath": "static/person-active.png"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }
