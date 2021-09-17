@@ -1,0 +1,5 @@
+
+.u-border-bottom::after {
+	border-bottom-width: 2px;
+}
+
