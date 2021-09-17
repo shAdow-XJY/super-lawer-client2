@@ -31,7 +31,8 @@
 			return{
 				form:{
 					passport:"010",
-					password:"123456"
+					password:"123456",
+					
 				}
 			}
 		},
