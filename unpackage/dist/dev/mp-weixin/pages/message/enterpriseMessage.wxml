@@ -1,1 +1,0 @@
-<view>我是企业消息页<u-tabbar vue-id="2480891e-1" list="{{tabBarList}}" bind:__l="__l"></u-tabbar></view>
