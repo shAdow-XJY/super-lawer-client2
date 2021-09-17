@@ -88,16 +88,7 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }        
-        }      
-        ,{
-            "path" : "pages/test/test",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
+        }            
         ,{
             "path" : "pages/service/serviceFangan",
             "style" :                                                                                    
