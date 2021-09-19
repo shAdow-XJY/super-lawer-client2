@@ -49,14 +49,12 @@
 						</u-cell-item>
 					</u-col>
 				</u-row>
-				<button class="exit_bt">退出登录</button>
+				<button class="exit_bt" @click="exit">退出登录</button>
 			</view>
 		</view>
 		<u-tabbar :list="tabBarList"></u-tabbar>
 	</view>
 </template>
-
-
 
 
 <script>
@@ -91,12 +89,12 @@
 				if (res.data.code == 1) {
 					this.user_type = getApp().globalData.user_type;
 					this.user = res.data.data.basic_info;
-
 					getApp().globalData.user_info = this.user;
 					console.log(this.user);
 					console.log(res.data.data.basic_info);
 					console.log(this.user.register_time);
 					this.user.register_time = formateDate(this.user.register_time)
+					this.RoleImage = user.cover
 					console.log(this.user_type)
 				}
 
@@ -104,8 +102,7 @@
 
 		},
 		methods: {
-			clickInfo() {
-
+			clickInfo() {			
 				uni.navigateTo({
 					url: '/pages/userInfo/userInfo'
 				})
@@ -115,6 +112,11 @@
 
 				uni.navigateTo({
 					url: '/pages/userApply/userApply'
+				})
+			},
+			exit(){
+				uni.reLaunch({
+					url:"../login/login"
 				})
 			}
 		},

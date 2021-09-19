@@ -116,6 +116,34 @@
             }
             
         }
+        ,{
+            "path" : "pages/task/taskList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+
+        ,{
+            "path" : "pages/lawyer/lawyerDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/ProjectDetail/createNewProject",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -124,24 +152,13 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar":{
-		"list":[{
-			"text":"消息",
-			"pagePath":"pages/message/message",
-			"iconPath":"static/home.png",
-			"selectedIconPath":"static/home-active.png"
-		},
+		"list":[ 
 		{
-			"text":"业务",
-			"pagePath":"pages/task/task",
+			"text":"业务详情",
+			"pagePath":"pages/task/taskList",
 			"iconPath":"static/recevingOrder.png",
 			"selectedIconPath":"static/recevingOrder-active.png"
-		},
-		{
-			"text":"文件",
-			"pagePath":"pages/file/file",
-			"iconPath":"static/placeOrder.png",
-			"selectedIconPath":"static/placeOrder-active.png"
-		},
+		},	
 		{
 			"text":"我的",
 			"pagePath":"pages/user/user",
@@ -153,6 +170,14 @@
 			"pagePath":"pages/message/enterpriseMessage",
 			"iconPath":"static/person.png",
 			"selectedIconPath":"static/person-active.png"
+		},
+		{
+			"text":"业务",
+			"pagePath":"pages/task/taskList"
+		},
+		{
+			"text":"律师消息",
+			"pagePath":"pages/message/message"
 		}
 		]
 	}

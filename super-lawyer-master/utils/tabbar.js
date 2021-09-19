@@ -1,7 +1,7 @@
 const admin = [
 	{
 		"text":"业务",
-		"pagePath":"/pages/task/task",
+		"pagePath":"/pages/task/taskList",
 		"iconPath":"/static/recevingOrder.png",
 		"selectedIconPath":"/static/recevingOrder-active.png"
 	},
@@ -22,7 +22,7 @@ const lawyer = [
 	},
 	{
 		"text":"业务",
-		"pagePath":"/pages/task/task",
+		"pagePath":"/pages/task/taskList",
 		"iconPath":"/static/recevingOrder.png",
 		"selectedIconPath":"/static/recevingOrder-active.png"
 	},
@@ -44,7 +44,7 @@ const enterprise = [
 	},
 	{
 		"text":"业务",
-		"pagePath":"/pages/task/task",
+		"pagePath":"/pages/task/taskList",
 		"iconPath":"/static/recevingOrder.png",
 		"selectedIconPath":"/static/recevingOrder-active.png"
 	},

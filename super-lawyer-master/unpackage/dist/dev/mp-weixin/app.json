@@ -10,10 +10,12 @@
     "pages/userApply/userApply",
     "pages/toDoThings/toDoThings",
     "pages/ProjectDetail/ProjectDetail",
-    "pages/test/test",
     "pages/service/serviceFangan",
     "pages/enterprise/enterpriseDetail",
-    "pages/message/enterpriseMessage"
+    "pages/message/enterpriseMessage",
+    "pages/task/taskList",
+    "pages/lawyer/lawyerDetail",
+    "pages/ProjectDetail/createNewProject"
   ],
   "subPackages": [],
   "window": {
@@ -25,22 +27,10 @@
   "tabBar": {
     "list": [
       {
-        "text": "消息",
-        "pagePath": "pages/message/message",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-active.png"
-      },
-      {
-        "text": "业务",
-        "pagePath": "pages/task/task",
+        "text": "业务详情",
+        "pagePath": "pages/task/taskList",
         "iconPath": "static/recevingOrder.png",
         "selectedIconPath": "static/recevingOrder-active.png"
-      },
-      {
-        "text": "文件",
-        "pagePath": "pages/file/file",
-        "iconPath": "static/placeOrder.png",
-        "selectedIconPath": "static/placeOrder-active.png"
       },
       {
         "text": "我的",
@@ -53,9 +43,16 @@
         "pagePath": "pages/message/enterpriseMessage",
         "iconPath": "static/person.png",
         "selectedIconPath": "static/person-active.png"
+      },
+      {
+        "text": "业务",
+        "pagePath": "pages/task/taskList"
+      },
+      {
+        "text": "律师消息",
+        "pagePath": "pages/message/message"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

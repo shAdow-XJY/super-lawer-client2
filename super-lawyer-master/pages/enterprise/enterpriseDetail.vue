@@ -57,22 +57,23 @@
 			
 		},
 		onLoad(option) {
-			let id = option.enterpriseId
+			let id = option.enterpriseId			
 			let params = {
 				token: getApp().globalData.user_token
 			}
-			getEnterpriseDetail(params,id).then(res =>{
-				if(res.data.code ==1){
-					console.log(res.data.data)
-					console.log(res.data.data.info)
-					this.info[0].value = res.data.data.info.enterprise_name
-					this.info[2].value = res.data.data.info.institution_code
-					this.info[3].value = res.data.data.info.enterprise_add								
-					this.info[4].value = formateDate(res.data.data.info.auth_time)		
-					this.business_license = res.data.data.info.business_license
-				}
-			})
-			
+			if(id){
+				getEnterpriseDetail(params,id).then(res =>{
+					if(res.data.code ==1){
+						console.log(res.data.data)
+						console.log(res.data.data.info)
+						this.info[0].value = res.data.data.info.enterprise_name
+						this.info[2].value = res.data.data.info.institution_code
+						this.info[3].value = res.data.data.info.enterprise_add								
+						this.info[4].value = formateDate(res.data.data.info.auth_time)		
+						this.business_license = res.data.data.info.business_license
+					}
+				})
+			}						
 		}
 	}
 </script>

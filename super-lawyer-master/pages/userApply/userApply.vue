@@ -457,7 +457,6 @@ export default {
 	.wrap {
 		padding: 30rpx;
 	}
-
 	.u-border-bottom::after{
 		border-bottom-width: 5rpx !important;
 	 }

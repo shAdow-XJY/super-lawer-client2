@@ -42,14 +42,14 @@ page {
   padding-top: 20rpx;
   background: -webkit-repeating-linear-gradient(top left, #f0f0f0, #fafafa);
   background: repeating-linear-gradient(to bottom right, #f0f0f0, #fafafa);
-  height: 430rpx;
+  height: 550rpx;
   border-bottom: #d7d6e0 solid 4rpx;
   border-bottom-left-radius: 50rpx;
   border-bottom-right-radius: 50rpx;
   padding-left: 30rpx;
 }
 .header .info {
-  height: 280rpx;
+  height: 400rpx;
   margin-bottom: 35rpx;
   margin-top: 20rpx;
   background-color: #FFFFFF;
@@ -73,6 +73,7 @@ page {
   font-family: "微软雅黑";
 }
 .header .info .date {
+  margin-top: 110rpx;
   padding-left: 20rpx;
   float: left;
   font-weight: 550;
@@ -112,5 +113,8 @@ page {
 }
 .w-bg-light {
   background-color: #b13823 !important;
+}
+.cell {
+  height: 30rpx !important;
 }
 

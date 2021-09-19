@@ -30,8 +30,8 @@
 		data(){
 			return{
 				form:{
-					passport:"010",
-					password:"123456",
+					passport:"test",
+					password:"test00",
 					
 				}
 			}
@@ -54,8 +54,8 @@
 						// console.log(getApp().globalData.user_token);
 						this.$refs.tip.show({
 							title:"登录成功",
-							type:"success",
-							
+							type:"success",		
+												
 						})
 						setTimeout(()=>{
 							uni.switchTab({

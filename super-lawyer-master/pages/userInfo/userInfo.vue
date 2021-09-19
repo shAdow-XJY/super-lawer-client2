@@ -21,11 +21,7 @@
 				info: [{
 						"key": "姓名",
 						"value": ""
-					},
-					{
-						"key": "性别",
-						"value": ""
-					},
+					},					
 					{
 						"key": "联系方式",
 						"value": ""
@@ -57,12 +53,10 @@
 			let user_Info=getApp().globalData.user_info
 			
 			this.info[0].value = user_Info.nickname,
-			// this.info[2].value = res.data.userLawyer.sex == 0 ? "女" : "男",
-			this.info[1].value = '男',
-			this.info[2].value = user_Info.phone,
+			// this.info[2].value = res.data.userLawyer.sex == 0 ? "女" : "男",		
+			this.info[1].value = user_Info.phone,
 			this.info[3].value = user_Info.email,
-			this.info[4].value = user_Info.register_time,
-			
+			this.info[4].value = user_Info.register_time,			
 			this.user_type = getApp().globalData.user_type,
 			this.register_time = user_Info.register_time
 

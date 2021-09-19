@@ -20,7 +20,7 @@ const tabBar = {
 				case '企业用户':{
 					r = 'enterprise'
 					break
-				} ,
+				}
 				case '未认证':{
 					r = 'lawyer'
 				}
