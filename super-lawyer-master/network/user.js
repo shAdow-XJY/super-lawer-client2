@@ -7,11 +7,19 @@ export function postLogin(params){
 	})
 }
 
-export function register(params,data)
+export function register(params)
 {
 	return request({
 		url:"/v1/user/register",
-		data:data
+		method:"POST"
+	})
+}
+
+export function sendCheckCode(params)
+{
+	return request({
+		url:"/v1/user/check-code/send?mail="+params.mail,
+		method:"POST"
 	})
 }
 
