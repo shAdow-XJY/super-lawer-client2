@@ -153,6 +153,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/userApply/userEnterApply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

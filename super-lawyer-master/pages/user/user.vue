@@ -111,7 +111,7 @@
 			clickApply() {
 
 				uni.navigateTo({
-					url: '/pages/userApply/userApply'
+					url: '/pages/userApply/userEnterApply'
 				})
 			},
 			exit(){

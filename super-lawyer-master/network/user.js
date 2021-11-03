@@ -34,5 +34,15 @@ export function getInfo(params)
 	})
 }
 
-
+export function enterpriseApply(params)
+{
+	return request({
+		url:"/v1/user/auth/enterprise",
+		method:"POST",
+		data:params,
+		header:{
+			token: params.token
+		}
+	})
+}
 
