@@ -24,11 +24,13 @@ export function getLawyerById(params,id){
 export function ApplyLawyer(params,info){
 	return request({
 		url:'/v1/user/auth/lawer',
-		method:"POST",
+		method:'POST',
+		data:info,
 		header:{
 			token:params.token,
+			'content-type': 'application/json'
 		},
-		data:info
+		
 	})
 }
 

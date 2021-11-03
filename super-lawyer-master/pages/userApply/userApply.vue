@@ -29,12 +29,13 @@
 		</u-form>
 		<u-button @click="submit" type="success">提交</u-button>
 		<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
-		<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="qualificationConfirm" ></u-select>		
+		<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="qualificationConfirm" ></u-select>	
+		<u-toast :title="result" :type="resultType" ref="tip"/>
 	</view>
 </template>
 
 <script>
-import ApplyLawyer from '../../network/lawyer.js'
+import {ApplyLawyer} from '../../network/lawyer.js'
 	
 export default {
 	data() {
@@ -48,7 +49,7 @@ export default {
 				  "idcard_back_url": "",
 				  "idcard_front_url": "",
 				  "real_name": "阿梓从小就很可爱",
-				  "sex": 0,
+				  "sex": '',
 				  "working_time": ''
 			},	
 			selectList: [
@@ -124,9 +125,6 @@ export default {
 				{
 					text: '女'
 				},
-				{
-					text: '保密'
-				}
 			],		
 			actionSheetShow: false,
 			pickerShow: false,
@@ -135,9 +133,6 @@ export default {
 		};
 	},
 	
-	onLoad(options) {
-	  
-	},
 		
 	computed: {
 		borderCurrent() {
@@ -165,12 +160,13 @@ export default {
 	onSuccess1(data){
 		console.log(data)
 		this.model.idcard_front_url= data.data.url	
-		this.$refs.UploadCb.upload()	
+		this.$refs.UploadCb.upload()
+		
 	},
 	onSuccess2(data){
 		console.log(data)
 		this.model.idcard_back_url= data.data.url
-		this.$refs.UploadL.upload()
+		this.$refs.UploadL.upload()	
 	},
   	onSuccess3(data){
 		console.log(data)
@@ -183,7 +179,8 @@ export default {
 				    let params = {
 						token:getApp().globalData.user_token
 					}
-			    ApplyLawyer(params,that.model).then(res =>{
+				   this.model.sex = this.model.sex =="男"?1:0;
+			       ApplyLawyer(params,this.model).then(res =>{
 						console.log(res)
 						if(res.data.code==1)
 						{

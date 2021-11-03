@@ -96,25 +96,28 @@ var components
 try {
   components = {
     uForm: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 276))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 282))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 283))
+      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 289))
     },
     uInput: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 301))
+      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 307))
     },
     uUpload: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 294))
+      return Promise.all(/*! import() | uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 300))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 308))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 314))
     },
     uActionSheet: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-action-sheet/u-action-sheet */ "uview-ui/components/u-action-sheet/u-action-sheet").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 315))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-action-sheet/u-action-sheet */ "uview-ui/components/u-action-sheet/u-action-sheet").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 321))
     },
     uSelect: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 322))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 328))
+    },
+    uToast: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 202))
     }
   }
 } catch (e) {
@@ -216,7 +219,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _lawyer = _interopRequireDefault(__webpack_require__(/*! ../../network/lawyer.js */ 72));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+
+var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72); //
 //
 //
 //
@@ -251,8 +255,8 @@ var _lawyer = _interopRequireDefault(__webpack_require__(/*! ../../network/lawye
 //
 //
 //
-var _default = { data: function data() {var that = this;return { action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", model: { "business_license_url": "", "degree": "", "id_number": "545615615156", "idcard_back_url": "", "idcard_front_url": "", "real_name": "阿梓从小就很可爱", "sex": 0, "working_time": '' }, selectList: [{ value: '学士', label: '学士' }, { value: '硕士', label: '硕士' }, { value: '博士', label: '博士' }, { value: '其他', label: '其他' }], rules: {
-        real_name: [
+//
+var _default = { data: function data() {var that = this;return { action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", model: { "business_license_url": "", "degree": "", "id_number": "545615615156", "idcard_back_url": "", "idcard_front_url": "", "real_name": "阿梓从小就很可爱", "sex": '', "working_time": '' }, selectList: [{ value: '学士', label: '学士' }, { value: '硕士', label: '硕士' }, { value: '博士', label: '博士' }, { value: '其他', label: '其他' }], rules: { real_name: [
         {
           required: true,
           message: '请输入姓名',
@@ -304,10 +308,7 @@ var _default = { data: function data() {var that = this;return { action: "http:/
         text: '男' },
 
       {
-        text: '女' },
-
-      {
-        text: '保密' }],
+        text: '女' }],
 
 
       actionSheetShow: false,
@@ -317,9 +318,6 @@ var _default = { data: function data() {var that = this;return { action: "http:/
 
   },
 
-  onLoad: function onLoad(options) {
-
-  },
 
   computed: {
     borderCurrent: function borderCurrent() {
@@ -348,6 +346,7 @@ var _default = { data: function data() {var that = this;return { action: "http:/
       console.log(data);
       this.model.idcard_front_url = data.data.url;
       this.$refs.UploadCb.upload();
+
     },
     onSuccess2: function onSuccess2(data) {
       console.log(data);
@@ -365,7 +364,8 @@ var _default = { data: function data() {var that = this;return { action: "http:/
             var params = {
               token: getApp().globalData.user_token };
 
-            (0, _lawyer.default)(params, that.model).then(function (res) {
+            _this.model.sex = _this.model.sex == "男" ? 1 : 0;
+            (0, _lawyer.ApplyLawyer)(params, _this.model).then(function (res) {
               console.log(res);
               if (res.data.code == 1)
               {

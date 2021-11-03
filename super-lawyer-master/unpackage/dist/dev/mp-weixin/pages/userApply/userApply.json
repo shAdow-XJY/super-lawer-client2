@@ -8,6 +8,7 @@
     "u-upload": "/uview-ui/components/u-upload/u-upload",
     "u-button": "/uview-ui/components/u-button/u-button",
     "u-action-sheet": "/uview-ui/components/u-action-sheet/u-action-sheet",
-    "u-select": "/uview-ui/components/u-select/u-select"
+    "u-select": "/uview-ui/components/u-select/u-select",
+    "u-toast": "/uview-ui/components/u-toast/u-toast"
   }
 }
