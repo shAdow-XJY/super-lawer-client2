@@ -11,7 +11,8 @@ export function register(params)
 {
 	return request({
 		url:"/v1/user/register",
-		method:"POST"
+		method:"POST",
+		data:params
 	})
 }
 
@@ -29,7 +30,10 @@ export function getInfo(params)
 		url:"/v1/user/info",
 		header:{
 			token: params.token
-		}
+		},
+		header:{
+			'content-type': 'application/json'
+		},
 	})
 }
 

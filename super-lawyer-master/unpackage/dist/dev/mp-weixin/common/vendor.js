@@ -10,56 +10,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.createPlugin = createPlugin;exports.createSubpackageApp = createSubpackageApp;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
 
-function b64DecodeUnicode(str) {
-  return decodeURIComponent(atob(str).split('').map(function (c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-}
-
-function getCurrentUserInfo() {
-  var token = wx.getStorageSync('uni_id_token') || '';
-  var tokenArr = token.split('.');
-  if (!token || tokenArr.length !== 3) {
-    return {
-      uid: null,
-      role: [],
-      permission: [],
-      tokenExpired: 0 };
-
-  }
-  var userInfo;
-  try {
-    userInfo = JSON.parse(b64DecodeUnicode(tokenArr[1]));
-  } catch (error) {
-    throw new Error('获取当前用户信息出错，详细错误信息为：' + error.message);
-  }
-  userInfo.tokenExpired = userInfo.exp * 1000;
-  delete userInfo.exp;
-  delete userInfo.iat;
-  return userInfo;
-}
-
-function uniIdMixin(Vue) {
-  Vue.prototype.uniIDHasRole = function (roleId) {var _getCurrentUserInfo =
-
-
-    getCurrentUserInfo(),role = _getCurrentUserInfo.role;
-    return role.indexOf(roleId) > -1;
-  };
-  Vue.prototype.uniIDHasPermission = function (permissionId) {var _getCurrentUserInfo2 =
-
-
-    getCurrentUserInfo(),permission = _getCurrentUserInfo2.permission;
-    return this.uniIDHasRole('admin') || permission.indexOf(permissionId) > -1;
-  };
-  Vue.prototype.uniIDTokenValid = function () {var _getCurrentUserInfo3 =
-
-
-    getCurrentUserInfo(),tokenExpired = _getCurrentUserInfo3.tokenExpired;
-    return tokenExpired > Date.now();
-  };
-}
-
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -282,14 +232,10 @@ var promiseInterceptor = {
     if (!isPromise(res)) {
       return res;
     }
-    return new Promise(function (resolve, reject) {
-      res.then(function (res) {
-        if (res[0]) {
-          reject(res[0]);
-        } else {
-          resolve(res[1]);
-        }
-      });
+    return res.then(function (res) {
+      return res[1];
+    }).catch(function (res) {
+      return res[0];
     });
   } };
 
@@ -983,11 +929,6 @@ function initProperties(props) {var isBehavior = arguments.length > 1 && argumen
       type: Object,
       value: null };
 
-    // scopedSlotsCompiler auto
-    properties.scopedSlotsCompiler = {
-      type: String,
-      value: '' };
-
     properties.vueSlots = { // 小程序不能直接定义 $slots 的 props，所以通过 vueSlots 转换到 $slots
       type: null,
       value: [],
@@ -1383,14 +1324,11 @@ function initScopedSlotsParams() {
   };
 
   _vue.default.prototype.$setScopedSlotsParams = function (name, value) {
-    var vueIds = this.$options.propsData.vueId;
-    if (vueIds) {
-      var vueId = vueIds.split(',')[0];
-      var object = center[vueId] = center[vueId] || {};
-      object[name] = value;
-      if (parents[vueId]) {
-        parents[vueId].$forceUpdate();
-      }
+    var vueId = this.$options.propsData.vueId;
+    var object = center[vueId] = center[vueId] || {};
+    object[name] = value;
+    if (parents[vueId]) {
+      parents[vueId].$forceUpdate();
     }
   };
 
@@ -1417,7 +1355,6 @@ function parseBaseApp(vm, _ref3)
   if (vm.$options.store) {
     _vue.default.prototype.$store = vm.$options.store;
   }
-  uniIdMixin(_vue.default);
 
   _vue.default.prototype.mpHost = "mp-weixin";
 
@@ -1796,7 +1733,6 @@ function createSubpackageApp(vm) {
   var app = getApp({
     allowDefault: true });
 
-  vm.$scope = app;
   var globalData = app.globalData;
   if (globalData) {
     Object.keys(appOptions.globalData).forEach(function (name) {
@@ -1812,17 +1748,17 @@ function createSubpackageApp(vm) {
   });
   if (isFn(appOptions.onShow) && wx.onAppShow) {
     wx.onAppShow(function () {for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {args[_key5] = arguments[_key5];}
-      vm.__call_hook('onShow', args);
+      appOptions.onShow.apply(app, args);
     });
   }
   if (isFn(appOptions.onHide) && wx.onAppHide) {
     wx.onAppHide(function () {for (var _len6 = arguments.length, args = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {args[_key6] = arguments[_key6];}
-      vm.__call_hook('onHide', args);
+      appOptions.onHide.apply(app, args);
     });
   }
   if (isFn(appOptions.onLaunch)) {
     var args = wx.getLaunchOptionsSync && wx.getLaunchOptionsSync();
-    vm.__call_hook('onLaunch', args);
+    appOptions.onLaunch.call(app, args);
   }
   return vm;
 }
@@ -2064,9 +2000,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 11:
-/*!***************************************************!*\
-  !*** F:/gitee/super-lawyer-master/store/index.js ***!
-  \***************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/index.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3211,9 +3147,9 @@ var index = {
 /***/ }),
 
 /***/ 13:
-/*!************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/store/modules/tabBar.js ***!
-  \************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/modules/tabBar.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3254,9 +3190,9 @@ tabBar;exports.default = _default;
 /***/ }),
 
 /***/ 138:
-/*!*******************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/service.js ***!
-  \*******************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/service.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3274,9 +3210,9 @@ function getServiceFangan(params) {
 /***/ }),
 
 /***/ 14:
-/*!****************************************************!*\
-  !*** F:/gitee/super-lawyer-master/utils/tabbar.js ***!
-  \****************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/utils/tabbar.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3347,9 +3283,9 @@ var enterprise = [
 /***/ }),
 
 /***/ 15:
-/*!*****************************************************!*\
-  !*** F:/gitee/super-lawyer-master/store/getters.js ***!
-  \*****************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/getters.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3364,9 +3300,9 @@ getters;exports.default = _default;
 /***/ }),
 
 /***/ 16:
-/*!******************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/index.js ***!
-  \******************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/index.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3516,9 +3452,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 17:
-/*!*****************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/mixin/mixin.js ***!
-  \*****************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/mixin/mixin.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3590,9 +3526,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 18:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/request/index.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/request/index.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3771,9 +3707,9 @@ new Request();exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/deepMerge.js ***!
-  \************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/deepMerge.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8431,7 +8367,7 @@ function initProps (vm, propsOptions) {
       defineReactive$$1(props, key, value, function () {
         if (!isRoot && !isUpdatingChildComponent) {
           {
-            if(vm.mpHost === 'mp-baidu' || vm.mpHost === 'mp-kuaishou'){//百度、快手 observer 在 setData callback 之后触发，直接忽略该 warn
+            if(vm.mpHost === 'mp-baidu'){//百度 observer 在 setData callback 之后触发，直接忽略该 warn
                 return
             }
             //fixed by xxxxxx __next_tick_pending,uni://form-field 时不告警
@@ -9278,8 +9214,7 @@ function _diff(current, pre, path, result) {
                 var currentType = type(currentValue);
                 var preType = type(preValue);
                 if (currentType != ARRAYTYPE && currentType != OBJECTTYPE) {
-                    // NOTE 此处将 != 修改为 !==。涉及地方太多恐怕测试不到，如果出现数据对比问题，将其修改回来。
-                    if (currentValue !== pre[key]) {
+                    if (currentValue != pre[key]) {
                         setResult(result, (path == '' ? '' : path + ".") + key, currentValue);
                     }
                 } else if (currentType == ARRAYTYPE) {
@@ -9861,9 +9796,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/deepClone.js ***!
-  \************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/deepClone.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9895,9 +9830,9 @@ deepClone;exports.default = _default;
 /***/ }),
 
 /***/ 21:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/test.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/test.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10137,9 +10072,9 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 /***/ }),
 
 /***/ 217:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/util/province.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/province.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10149,9 +10084,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 218:
-/*!***************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/util/city.js ***!
-  \***************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/city.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10161,9 +10096,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 219:
-/*!***************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/util/area.js ***!
-  \***************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/area.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10173,9 +10108,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 22:
-/*!**************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/queryParams.js ***!
-  \**************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/queryParams.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10242,17 +10177,17 @@ queryParams;exports.default = _default;
 /***/ }),
 
 /***/ 23:
-/*!********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/route.js ***!
-  \********************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/route.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 并且带有路由拦截功能
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */var
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 并且带有路由拦截功能
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */var
 
 Router = /*#__PURE__*/function () {
   function Router() {_classCallCheck(this, Router);
@@ -11167,9 +11102,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 262:
-/*!******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/util/emitter.js ***!
-  \******************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/emitter.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11227,9 +11162,9 @@ function _broadcast(componentName, eventName, params) {
 /***/ }),
 
 /***/ 263:
-/*!**************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/util/async-validator.js ***!
-  \**************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/async-validator.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12589,7 +12524,7 @@ Schema.warning = warning;
 Schema.messages = messages;var _default =
 
 Schema;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 264)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../Program Files/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 264)))
 
 /***/ }),
 
@@ -12953,9 +12888,9 @@ var substr = 'ab'.substr(-1) === 'b'
 /***/ }),
 
 /***/ 27:
-/*!*************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/timeFormat.js ***!
-  \*************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/timeFormat.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13015,9 +12950,9 @@ timeFormat;exports.default = _default;
 /***/ }),
 
 /***/ 28:
-/*!***********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/timeFrom.js ***!
-  \***********************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/timeFrom.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13073,9 +13008,9 @@ timeFrom;exports.default = _default;
 /***/ }),
 
 /***/ 29:
-/*!****************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/colorGradient.js ***!
-  \****************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/colorGradient.js ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13248,9 +13183,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/guid.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/guid.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13300,9 +13235,9 @@ guid;exports.default = _default;
 /***/ }),
 
 /***/ 31:
-/*!********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/color.js ***!
-  \********************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/color.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13348,9 +13283,9 @@ color;exports.default = _default;
 /***/ }),
 
 /***/ 32:
-/*!************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/type2icon.js ***!
-  \************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/type2icon.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13394,9 +13329,9 @@ type2icon;exports.default = _default;
 /***/ }),
 
 /***/ 33:
-/*!**************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/randomArray.js ***!
-  \**************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/randomArray.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13412,9 +13347,9 @@ randomArray;exports.default = _default;
 /***/ }),
 
 /***/ 34:
-/*!**********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/addUnit.js ***!
-  \**********************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/addUnit.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13431,9 +13366,9 @@ function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefin
 /***/ }),
 
 /***/ 35:
-/*!*********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/random.js ***!
-  \*********************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/random.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13452,9 +13387,9 @@ random;exports.default = _default;
 /***/ }),
 
 /***/ 36:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/trim.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/trim.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13478,9 +13413,9 @@ trim;exports.default = _default;
 /***/ }),
 
 /***/ 37:
-/*!********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/toast.js ***!
-  \********************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/toast.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13499,9 +13434,9 @@ toast;exports.default = _default;
 /***/ }),
 
 /***/ 38:
-/*!************************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/getParent.js ***!
-  \************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/getParent.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13557,9 +13492,9 @@ function getParent(name, keys) {
 /***/ }),
 
 /***/ 39:
-/*!**********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/$parent.js ***!
-  \**********************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/$parent.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13586,9 +13521,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 4:
-/*!***********************************************!*\
-  !*** F:/gitee/super-lawyer-master/pages.json ***!
-  \***********************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/pages.json ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -13597,9 +13532,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 40:
-/*!******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/sys.js ***!
-  \******************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/sys.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13616,9 +13551,9 @@ function sys() {
 /***/ }),
 
 /***/ 41:
-/*!***********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/debounce.js ***!
-  \***********************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/debounce.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13656,9 +13591,9 @@ debounce;exports.default = _default;
 /***/ }),
 
 /***/ 42:
-/*!***********************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/function/throttle.js ***!
-  \***********************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/throttle.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13699,9 +13634,9 @@ throttle;exports.default = _default;
 /***/ }),
 
 /***/ 43:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/config/config.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/config/config.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13723,9 +13658,9 @@ var version = '1.8.4';var _default =
 /***/ }),
 
 /***/ 44:
-/*!*******************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/uview-ui/libs/config/zIndex.js ***!
-  \*******************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/config/zIndex.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13753,14 +13688,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 51:
-/*!****************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/user.js ***!
-  \****************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/user.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 function postLogin(params) {
   return (0, _config.default)({
@@ -13773,7 +13708,8 @@ function register(params)
 {
   return (0, _config.default)({
     url: "/v1/user/register",
-    method: "POST" });
+    method: "POST",
+    data: params });
 
 }
 
@@ -13787,10 +13723,13 @@ function sendCheckCode(params)
 
 function getInfo(params)
 {
-  return (0, _config.default)({
+  return (0, _config.default)(_defineProperty({
     url: "/v1/user/info",
     header: {
-      token: params.token } });
+      token: params.token } }, "header",
+
+  {
+    'content-type': 'application/json' }));
 
 
 }
@@ -13798,9 +13737,9 @@ function getInfo(params)
 /***/ }),
 
 /***/ 52:
-/*!******************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/config.js ***!
-  \******************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/config.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13824,9 +13763,9 @@ function _default(options) {
 /***/ }),
 
 /***/ 61:
-/*!**********************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/enterprise.js ***!
-  \**********************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/enterprise.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13844,9 +13783,9 @@ function getEnterpriseDetail(params, id) {
 /***/ }),
 
 /***/ 70:
-/*!*******************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/project.js ***!
-  \*******************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/project.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13907,10 +13846,10 @@ function createProject(params, projectDetail) {
   return (0, _config.default)({
     url: '/v1/projects/commit',
     method: 'POST',
+    data: projectDetail,
     header: {
-      token: params.token },
-
-    data: projectDetail });
+      'token': params.token,
+      'content-type': 'application/json' } });
 
 
 
@@ -13919,9 +13858,9 @@ function createProject(params, projectDetail) {
 /***/ }),
 
 /***/ 71:
-/*!**************************************************!*\
-  !*** F:/gitee/super-lawyer-master/utils/util.js ***!
-  \**************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/utils/util.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13939,9 +13878,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.formateDat
 /***/ }),
 
 /***/ 72:
-/*!******************************************************!*\
-  !*** F:/gitee/super-lawyer-master/network/lawyer.js ***!
-  \******************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/lawyer.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13971,9 +13910,9 @@ function getLawyerById(params, id) {
 /***/ }),
 
 /***/ 97:
-/*!*****************************************************************!*\
-  !*** F:/gitee/super-lawyer-master/js_sdk/mineking-tool/tool.js ***!
-  \*****************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/js_sdk/mineking-tool/tool.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

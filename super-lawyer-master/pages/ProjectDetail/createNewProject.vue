@@ -37,6 +37,7 @@
 	import{
 		createProject
 	}from "../../network/project.js"
+	
 	export default {
 		data() {
 			return {
@@ -83,10 +84,10 @@
 				
 			}
 		},
-		methods: {
+		methods: {				
 			timeChange(e){
 				console.log(e)
-				let date = new Date(e.result)
+				let date = new Date(e.result).Format("yyyy-MM-dd HH:mm:ss")
 				this.formData.end_time = date
 			},
 			projectTyepChange(e){
@@ -98,12 +99,10 @@
 			submit(){
 				var that = this
 				this.$refs.uform.validate(valid=>{
-					console.log(valid)
 					if(valid){
 						let params ={
 							token:getApp().globalData.user_token
-						}
-						console.log(that.formData)
+						}			
 						
 						createProject(params,that.formData).then(res=>{
 							console.log(res)
@@ -111,15 +110,18 @@
 								that.$refs.uToast.show({
 									title: res.data.message,
 									type: 'success',
-									duration: 1000
+									duration: 1000,
+									callback:function(){
+										setTimeout(()=>{
+											uni.switchTab({
+												url:"../task/taskList"
+											})
+										},1000)
+									}
 								})
 								
 							}
-							// setTimeout(()=>{
-							// 	uni.switchTab({
-							// 		url:"../task/taskList"
-							// 	})
-							// },1000)
+						
 						})
 					}else{
 						console.log("验证不通过")

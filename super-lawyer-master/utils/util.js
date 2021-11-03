@@ -7,3 +7,5 @@ export function formateDate(value){
 	day = day > 10 ? day: "0" +day
 	return year +'-'+month +'-'+day
 }
+
+

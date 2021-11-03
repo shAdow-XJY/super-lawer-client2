@@ -4,7 +4,7 @@
 		<view class="info">
 			<u-form :model="form">
 				<u-form-item label="头像" label-width="200">
-					<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
+					<u-upload ref="uUpload" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" :auto-upload="false"></u-upload>
 				</u-form-item>
 				<u-form-item label="用户名" label-width="200">
 					<u-input v-model="form.passport"></u-input>
@@ -62,54 +62,9 @@
 		methods: {
 			onSuccess(data){
 				console.log(data);
+				let all = true;
 				this.linkImg=data.data.url
 				console.log(this.linkImg)
-			},
-			sendCode(){
-				console.log('this.form.email')
-				console.log(this.form.email)
-				console.log()
-				if(!this.form.email==""){
-					if(checkStr(this.form.email,'email')){
-						let params = {
-							mail:this.form.email
-						}
-						sendCheckCode(params).then(res=>{
-							console.log(res.data.data);
-							if(res.data.code==1)
-							{
-								this.result = "验证码发送成功";
-								this.resultType = "success";
-							}
-							else{
-								this.result = "验证码发送失败";
-								this.resultType = "error";
-							}
-						})
-					}
-					else{
-						this.result = "邮箱错误";
-						this.resultType = "error";
-					}
-				}
-				else{
-					this.result = "邮箱为空";
-					this.resultType = "error";
-				}
-				
-				setTimeout(()=>{
-					this.$refs.tip.show({
-						title:this.result,
-						type:this.resultType,							
-					})
-				},1300)
-				// console.log('result');
-				// console.log('resultType');
-				// console.log(this.result);
-				// console.log(this.resultType);
-			},
-		    registerButton(){
-				let all = true;
 				this.resultType = "success";
 				if(this.form.check_code==""){
 					this.result = "验证码为空";
@@ -155,13 +110,12 @@
 							title:this.result,
 							type:"error",							
 						})
-					},600);
-					
+					},600);		
 					return;
 				}
 				else{
 					let params = {
-						check_code:this.form.check_code,
+						check_code:parseInt(this.form.check_code),
 						cover:this.linkImg,
 						email:this.form.email,
 						passport:this.form.passport,
@@ -169,22 +123,22 @@
 						phone:this.form.phone,
 						username:this.form.username
 					}
-					console.log(params);
-					
+					console.log(params);	
 					register(params).then(res=>{
-							console.log(res.data);
+							
+														
 							if(res.data.code==1)
 							{
 								this.$refs.tip.show({
 									title:"注册成功",
-									type:"success",						
+									type:"success",
+									duration:1500,
+									callback:function(){
+										uni.navigateBack({})
+									}
 								})
+						       
 								
-								setTimeout(()=>{
-									uni.navigateBack({
-										delta: 1
-									})
-								},1500)
 							}
 							else{
 								this.$refs.tip.show({
@@ -193,11 +147,55 @@
 								})
 							}
 							
+					})			
+				}
+			},
+			sendCode(){
+				console.log('this.form.email')
+				console.log(this.form.email)
+				console.log()
+				if(!this.form.email==""){
+					if(checkStr(this.form.email,'email')){
+						let params = {
+							mail:this.form.email
+						}
+						sendCheckCode(params).then(res=>{
+							console.log(res.data.data);
+							if(res.data.code==1)
+							{
+								this.result = "验证码发送成功";
+								this.resultType = "success";
+							}
+							else{
+								this.result = "验证码发送失败";
+								this.resultType = "error";
+							}
+						})
+					}
+					else{
+						this.result = "邮箱错误";
+						this.resultType = "error";
+					}
+				}
+				else{
+					this.result = "邮箱为空";
+					this.resultType = "error";
+				}
+				
+				setTimeout(()=>{
+					this.$refs.tip.show({
+						title:this.result,
+						type:this.resultType,							
 					})
-					
-			}
-		
-		}
+				},1300)
+				// console.log('result');
+				// console.log('resultType');
+				// console.log(this.result);
+				// console.log(this.resultType);
+			},
+		  async registerButton(){			
+				await this.$refs.uUpload.upload()						
+			}			
 	}
 }
 </script>
