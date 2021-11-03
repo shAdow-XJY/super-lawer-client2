@@ -2,7 +2,7 @@
 	<view v-if="update">
 		<u-cell-group>
 			<u-cell-item v-for="task in taskList" :title="'项目名称: ' + task.project_name" :value=" '创建日期: '+ task.commit_time" icon="file-text" @click="toTaskDetail(task.project_id)"></u-cell-item>
-			<u-cell-item title="添加项目" :arrow="false">
+			<u-cell-item title="添加项目" :arrow="false" v-if="user_type == '企业用户'">
 				<u-button slot="right-icon" type="primary" size="mini" @click="addProject"><view style="font-size: 50rpx;">+</view></u-button>
 			</u-cell-item>
 		</u-cell-group>
@@ -24,7 +24,8 @@
 		data() {
 			return {
 				taskList:[],
-				update:true
+				update:true,
+				user_type:''
 			}
 		},
 		methods: {
@@ -77,9 +78,11 @@
 						this.update = true
 					})
 				}
-			})
-			
-					
+			})								
+		},
+		onLoad(){
+			this.user_type = getApp().globalData.user_type
+			console.log(getApp().globalData.user_type)
 		}
 	}
 </script>

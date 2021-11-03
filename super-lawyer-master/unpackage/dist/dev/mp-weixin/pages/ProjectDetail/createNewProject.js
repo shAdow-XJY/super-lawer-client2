@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -247,7 +247,8 @@ var _project = __webpack_require__(/*! ../../network/project.js */ 71); //
 //
 //
 //
-var _default = { data: function data() {return { show: false, projectTypes: [{ name: "法律咨询" }, { name: "法律诉讼" }], serviceList: [], formData: { end_time: '', project_content: '', project_name: '', project_type: '', service_id: '' }, rules: { project_name: [{ required: true, message: '请输入项目名称', trigger: 'blur' }], end_time: [{ required: true, message: '请选择结束时间', trigger: 'blur' }],
+var _default = { data: function data() {return { show: false, projectTypes: [{ name: "法律咨询" }, { name: "法律诉讼" }], serviceList: [], formData: { end_time: '', project_content: '', project_name: '', project_type: '', service_id: '' }, rules: { project_name: [{ required: true, message: '请输入项目名称', trigger: 'blur' }], end_time: [{ required: true, message: '请选择结束时间',
+          trigger: 'blur' }],
 
         service_id: [{
           required: true,
@@ -267,7 +268,7 @@ var _default = { data: function data() {return { show: false, projectTypes: [{ n
   methods: {
     timeChange: function timeChange(e) {
       console.log(e);
-      var date = new Date(e.result);
+      var date = new Date(e.result).Format("yyyy-MM-dd HH:mm:ss");
       this.formData.end_time = date;
     },
     projectTyepChange: function projectTyepChange(e) {
@@ -279,12 +280,10 @@ var _default = { data: function data() {return { show: false, projectTypes: [{ n
     submit: function submit() {
       var that = this;
       this.$refs.uform.validate(function (valid) {
-        console.log(valid);
         if (valid) {
           var params = {
             token: getApp().globalData.user_token };
 
-          console.log(that.formData);
 
           (0, _project.createProject)(params, that.formData).then(function (res) {
             console.log(res);
@@ -292,15 +291,18 @@ var _default = { data: function data() {return { show: false, projectTypes: [{ n
               that.$refs.uToast.show({
                 title: res.data.message,
                 type: 'success',
-                duration: 1000 });
+                duration: 1000,
+                callback: function callback() {
+                  setTimeout(function () {
+                    uni.switchTab({
+                      url: "../task/taskList" });
+
+                  }, 1000);
+                } });
 
 
             }
-            // setTimeout(()=>{
-            // 	uni.switchTab({
-            // 		url:"../task/taskList"
-            // 	})
-            // },1000)
+
           });
         } else {
           console.log("验证不通过");
@@ -326,6 +328,7 @@ var _default = { data: function data() {return { show: false, projectTypes: [{ n
     //2.此处需要对ref进行规则绑定，否则无法进行校验
     this.$refs.uform.setRules(this.rules);
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

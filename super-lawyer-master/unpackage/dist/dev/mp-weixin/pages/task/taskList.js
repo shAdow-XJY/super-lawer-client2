@@ -186,7 +186,8 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 72);function _interop
   data: function data() {
     return {
       taskList: [],
-      update: true };
+      update: true,
+      user_type: '' };
 
   },
   methods: {
@@ -240,8 +241,10 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 72);function _interop
                     });
                   }
                 }));case 5:case "end":return _context.stop();}}}, _callee);}))();
-
-
+  },
+  onLoad: function onLoad() {
+    this.user_type = getApp().globalData.user_type;
+    console.log(getApp().globalData.user_type);
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

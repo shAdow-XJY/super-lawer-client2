@@ -178,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));
 
 
 
@@ -219,77 +219,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _user = __webpack_require__(/*! ../../network/user.js */ 52);
-var _tool = __webpack_require__(/*! ../../js_sdk/mineking-tool/tool.js */ 98); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { form: { passport: "registerPage", password: "registerPage", username: "registerPage", phone: "15626798678", email: "1290232854@qq.com", check_code: "" }, linkImg: "", action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", result: "", resultType: "" };}, methods: { onSuccess: function onSuccess(data) {console.log(data);this.linkImg = data.data.url;console.log(this.linkImg);}, sendCode: function sendCode() {var _this = this;console.log('this.form.email');console.log(this.form.email);console.log();if (!this.form.email == "") {if ((0, _tool.checkStr)(this.form.email, 'email')) {var params = { mail: this.form.email };(0, _user.sendCheckCode)(params).then(function (res) {console.log(res.data.data);if (res.data.code == 1) {_this.result = "验证码发送成功";
-              _this.resultType = "success";
-            } else
-            {
-              _this.result = "验证码发送失败";
-              _this.resultType = "error";
-            }
-          });
-        } else
-        {
-          this.result = "邮箱错误";
-          this.resultType = "error";
-        }
-      } else
-      {
-        this.result = "邮箱为空";
-        this.resultType = "error";
-      }
+var _tool = __webpack_require__(/*! ../../js_sdk/mineking-tool/tool.js */ 98);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+{
+  data: function data() {
+    return {
+      form: {
+        passport: "registerPage",
+        password: "registerPage",
+        username: "registerPage",
+        phone: "15626798678",
+        email: "1290232854@qq.com",
+        check_code: "" },
 
-      setTimeout(function () {
-        _this.$refs.tip.show({
-          title: _this.result,
-          type: _this.resultType });
+      linkImg: "",
+      action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover",
 
-      }, 1300);
-      // console.log('result');
-      // console.log('resultType');
-      // console.log(this.result);
-      // console.log(this.resultType);
-    },
-    registerButton: function registerButton() {var _this2 = this;
+      result: "",
+      resultType: "" };
+
+
+  },
+  methods: {
+    onSuccess: function onSuccess(data) {var _this = this;
+      console.log(data);
       var all = true;
+      this.linkImg = data.data.url;
+      console.log(this.linkImg);
       this.resultType = "success";
       if (this.form.check_code == "") {
         this.result = "验证码为空";
@@ -331,17 +286,16 @@ var _default = { data: function data() {return { form: { passport: "registerPage
       }
       if (!all) {
         setTimeout(function () {
-          _this2.$refs.tip.show({
-            title: _this2.result,
+          _this.$refs.tip.show({
+            title: _this.result,
             type: "error" });
 
         }, 600);
-
         return;
       } else
       {
         var params = {
-          check_code: this.form.check_code,
+          check_code: parseInt(this.form.check_code),
           cover: this.linkImg,
           email: this.form.email,
           passport: this.form.passport,
@@ -350,33 +304,77 @@ var _default = { data: function data() {return { form: { passport: "registerPage
           username: this.form.username };
 
         console.log(params);
-
         (0, _user.register)(params).then(function (res) {
-          console.log(res.data);
+
+
           if (res.data.code == 1)
           {
-            _this2.$refs.tip.show({
+            _this.$refs.tip.show({
               title: "注册成功",
-              type: "success" });
+              type: "success",
+              duration: 1500,
+              callback: function callback() {
+                uni.navigateBack({});
+              } });
 
 
-            setTimeout(function () {
-              uni.navigateBack({
-                delta: 1 });
 
-            }, 1500);
           } else
           {
-            _this2.$refs.tip.show({
+            _this.$refs.tip.show({
               title: res.data.message,
               type: "error" });
 
           }
 
         });
+      }
+    },
+    sendCode: function sendCode() {var _this2 = this;
+      console.log('this.form.email');
+      console.log(this.form.email);
+      console.log();
+      if (!this.form.email == "") {
+        if ((0, _tool.checkStr)(this.form.email, 'email')) {
+          var params = {
+            mail: this.form.email };
 
+          (0, _user.sendCheckCode)(params).then(function (res) {
+            console.log(res.data.data);
+            if (res.data.code == 1)
+            {
+              _this2.result = "验证码发送成功";
+              _this2.resultType = "success";
+            } else
+            {
+              _this2.result = "验证码发送失败";
+              _this2.resultType = "error";
+            }
+          });
+        } else
+        {
+          this.result = "邮箱错误";
+          this.resultType = "error";
+        }
+      } else
+      {
+        this.result = "邮箱为空";
+        this.resultType = "error";
       }
 
+      setTimeout(function () {
+        _this2.$refs.tip.show({
+          title: _this2.result,
+          type: _this2.resultType });
+
+      }, 1300);
+      // console.log('result');
+      // console.log('resultType');
+      // console.log(this.result);
+      // console.log(this.resultType);
+    },
+    registerButton: function registerButton() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this3.$refs.uUpload.upload());case 2:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

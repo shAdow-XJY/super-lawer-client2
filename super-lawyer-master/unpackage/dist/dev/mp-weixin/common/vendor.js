@@ -14557,7 +14557,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;exports.enterpriseApply = enterpriseApply;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;exports.enterpriseApply = enterpriseApply;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 function postLogin(params) {
   return (0, _config.default)({
@@ -14585,10 +14585,13 @@ function sendCheckCode(params)
 
 function getInfo(params)
 {
-  return (0, _config.default)({
+  return (0, _config.default)(_defineProperty({
     url: "/v1/user/info",
     header: {
-      token: params.token } });
+      token: params.token } }, "header",
+
+  {
+    'content-type': 'application/json' }));
 
 
 }
@@ -14717,10 +14720,10 @@ function createProject(params, projectDetail) {
   return (0, _config.default)({
     url: '/v1/projects/commit',
     method: 'POST',
+    data: projectDetail,
     header: {
-      token: params.token },
-
-    data: projectDetail });
+      'token': params.token,
+      'content-type': 'application/json' } });
 
 
 

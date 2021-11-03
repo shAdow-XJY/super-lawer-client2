@@ -54,11 +54,11 @@ export function createProject(params,projectDetail){
 	return request({
 		url:'/v1/projects/commit',
 		method:'POST',
+		data:projectDetail,
 		header:{
-			token:params.token
+			'token':params.token,
+			'content-type': 'application/json'
 		},
-		data: projectDetail
-		
 		
 	})
 }
