@@ -15,7 +15,8 @@
     "pages/message/enterpriseMessage",
     "pages/task/taskList",
     "pages/lawyer/lawyerDetail",
-    "pages/ProjectDetail/createNewProject"
+    "pages/ProjectDetail/createNewProject",
+    "pages/chat-room/chat-room"
   ],
   "subPackages": [],
   "window": {
@@ -54,5 +55,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

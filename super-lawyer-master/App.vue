@@ -3,7 +3,8 @@
 		globalData:{
 			user_type:'',
 			user_token:'',
-			user_info:[]
+			user_info:[],
+			currentTo_user_info:[]
 		},
 		onLaunch: function() {
 			console.log('App Launch')

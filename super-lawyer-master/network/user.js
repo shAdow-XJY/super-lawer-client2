@@ -11,7 +11,8 @@ export function register(params)
 {
 	return request({
 		url:"/v1/user/register",
-		method:"POST"
+		method:"POST",
+		data:params
 	})
 }
 

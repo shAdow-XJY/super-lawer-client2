@@ -94,7 +94,7 @@
 					console.log(res.data.data.basic_info);
 					console.log(this.user.register_time);
 					this.user.register_time = formateDate(this.user.register_time)
-					this.RoleImage = user.cover
+					this.RoleImage = this.user.cover
 					console.log(this.user_type)
 				}
 
