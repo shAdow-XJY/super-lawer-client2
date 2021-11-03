@@ -4,10 +4,10 @@
             <!-- <view class="h-bg">
                  <image src="../../static/image/timg2.jpg" mode="scaleToFill"></image>
             </view> -->
-            <scroll-view class="msg-list" scroll-y="true" scroll-with-animation="true"
-                :scroll-into-view="scrollToView" @scrolltoupper="loadHistory" upper-threshold="50">
+            <scroll-view class="msg-list" :scroll-y="true" :scroll-with-animation="true"
+                :scroll-into-view="scrollToView" @scrolltoupper="loadHistory" upper-threshold="50" @scrolltolower="scrollToBottom">
                 <!-- 布局 -->
-                <view v-for="(item, key) in msgList" :key="key" :id="'msg'+key">
+                <view class="body" v-for="(item, key) in msgList" :key="key" :id="'msg'+key">
                     <!-- 用户发出的消息 -->
                         <view class="my" :class="{'other':!isMe(item.sender_name)}" >
 							<view>msg{{key}}</view>
@@ -78,7 +78,7 @@
         },
 		onShow() {
 		    this.timer = setInterval(() => {
-		        this.init()
+		        this.init()							
 		    }, 2000)
 		},
         onUnload(){
@@ -95,7 +95,7 @@
 		},
         onReady() {
             // 获取聊天信息 并 监听
-            this.init();
+            this.init();		
         },
         methods: {
             init(){
@@ -169,7 +169,8 @@
             // 查看历史记录
             loadHistory(){
                 console.log('查看历史记录');
-            }
+            },
+			
         },
         
     };

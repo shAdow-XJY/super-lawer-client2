@@ -29,6 +29,9 @@
 	import{
 		formateDate
 	}from "../../utils/util.js"
+	import {
+		getInfo
+	} from "../../network/user.js"
 	export default {
 		data() {
 			return {
@@ -90,7 +93,12 @@
 						
 					}
 				})
-			}			
+			}
+			else{
+				getInfo(params).then(res=>{
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

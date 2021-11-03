@@ -64,9 +64,16 @@
 }
 .homeBox .m-list.data-v-f8eb6796 {
   padding: 20rpx;
-  align-items: stretch;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
 }
 .homeBox .m-list .m-list-avatar.data-v-f8eb6796 {
   position: relative;
@@ -83,9 +90,13 @@
 }
 .homeBox .m-list .m-list-content.data-v-f8eb6796 {
   margin-left: 20rpx;
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
   overflow: hidden;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .homeBox .m-list .m-list-content .name.data-v-f8eb6796 {
   font-size: 28rpx;

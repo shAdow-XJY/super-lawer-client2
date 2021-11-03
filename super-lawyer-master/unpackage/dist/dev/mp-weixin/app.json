@@ -17,7 +17,8 @@
     "pages/lawyer/lawyerDetail",
     "pages/ProjectDetail/createNewProject",
     "pages/chat-room/chat-room",
-    "pages/userApply/userEnterApply"
+    "pages/userApply/userEnterApply",
+    "pages/lawyer/lawyerApply"
   ],
   "subPackages": [],
   "window": {
@@ -56,6 +57,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

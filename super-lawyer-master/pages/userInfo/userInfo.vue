@@ -60,6 +60,7 @@
 			this.user_type = getApp().globalData.user_type,
 			this.register_time = user_Info.register_time
 
+			console.log(info)
 			// var that = this;
 			// //判断是否认证通过
 			// if(options.certificationStatus != null){

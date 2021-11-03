@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,sH;AACAA,UAAU,CAACC,oBAAD,CAAV,C","file":"pages/lawyer/lawyerApply/lawyerApply.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/lawyer/lawyerApply/lawyerApply.vue'\ncreatePage(Page)"],"sourceRoot":""}

@@ -162,6 +162,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/lawyer/lawyerApply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

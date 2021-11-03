@@ -5,8 +5,9 @@
 				<view class="box">
 					<view class="box-hd">
 						<text class="name">{{user.nickname}}</text>
+						
 						<view class="avator">
-							<img :src="RoleImage">
+							<u-avatar class="pic" :src="RoleImage" size="200"></u-avatar>
 						</view>
 					</view>
 					<view class="info">
@@ -81,6 +82,7 @@
 			};
 		},
 		onLoad() {
+			console.log("用户token：" + getApp().globalData.user_token)
 			let params = {
 				token: getApp().globalData.user_token
 			}
@@ -102,16 +104,23 @@
 
 		},
 		methods: {
-			clickInfo() {			
-				uni.navigateTo({
-					url: '/pages/userInfo/userInfo'
-				})
+			clickInfo() {
+				if(this.user_type == "企业用户"){
+					uni.navigateTo({
+						url: '/pages/enterprise/enterpriseDetail'
+					})					
+				}
+				else if(this.user_type =="律师用户"){
+					uni.navigateTo({
+						url: '/pages/lawyer/lawyerDetail'
+					})		
+				}
+				
 
 			},
 			clickApply() {
-
 				uni.navigateTo({
-					url: '/pages/userApply/userEnterApply'
+					url: '/pages/userApply/userApply'
 				})
 			},
 			exit(){
@@ -172,6 +181,7 @@
 			}
 
 			.avator {
+				position: relative;
 				width: 200rpx;
 				height: 200rpx;
 				background: #fff;
@@ -180,9 +190,9 @@
 				margin-top: -60rpx;
 				overflow: hidden;
 
-				img {
-					width: 100%;
-					height: 85%;
+				.pic{
+					position: absolute;
+					left: -10rpx;
 				}
 			}
 		}

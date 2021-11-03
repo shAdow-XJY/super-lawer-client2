@@ -124,9 +124,7 @@
 						username:this.form.username
 					}
 					console.log(params);	
-					register(params).then(res=>{
-							
-														
+					register(params).then(res=>{											
 							if(res.data.code==1)
 							{
 								this.$refs.tip.show({

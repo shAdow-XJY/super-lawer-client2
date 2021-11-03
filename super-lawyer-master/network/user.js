@@ -29,11 +29,9 @@ export function getInfo(params)
 	return request({
 		url:"/v1/user/info",
 		header:{
-			token: params.token
-		},
-		header:{
+			token: params.token,
 			'content-type': 'application/json'
-		},
+		},		
 	})
 }
 

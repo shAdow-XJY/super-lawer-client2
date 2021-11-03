@@ -19,3 +19,16 @@ export function getLawyerById(params,id){
 		}
 	})
 }
+
+
+export function ApplyLawyer(params,info){
+	return request({
+		url:'/v1/user/auth/lawer',
+		method:"POST",
+		header:{
+			token:params.token,
+		},
+		data:info
+	})
+}
+
