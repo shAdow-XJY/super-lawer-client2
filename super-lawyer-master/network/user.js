@@ -48,3 +48,36 @@ export function enterpriseApply(params)
 	})
 }
 
+export function authList(params)
+{
+	return request({
+		url:"/v1/user/auth/list",
+		header:{
+			token:params.token
+		}
+	})
+	
+}
+
+export function getAuthDetail(params,data){
+	return request({
+		url:"/v1/user/auth/info/detail",
+		data,
+		header:{
+			token:params.token
+		}
+	})
+}
+
+export function confirm(params,data){
+	return request({
+		url:"/v1/user/auth",
+		data,
+		method:'POST',
+		header:{
+			token:params.token,
+			'content-type': 'application/x-www-form-urlencoded'
+		}
+	})
+}
+

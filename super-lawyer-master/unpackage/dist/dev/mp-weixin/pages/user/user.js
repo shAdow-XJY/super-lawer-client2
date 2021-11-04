@@ -229,6 +229,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var _user = __webpack_require__(/*! ../../network/user.js */ 52);
 
 
@@ -288,8 +293,15 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
 
     },
     clickApply: function clickApply() {
-      uni.navigateTo({
-        url: '/pages/userApply/userApply' });
+      if (this.user_type == "管理员") {
+        uni.navigateTo({
+          url: '/pages/userApply/userApplyConfirm' });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/userApply/userApply' });
+
+      }
 
     },
     exit: function exit() {

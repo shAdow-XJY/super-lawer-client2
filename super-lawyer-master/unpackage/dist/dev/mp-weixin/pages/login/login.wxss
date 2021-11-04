@@ -48,9 +48,15 @@
   content: "\e697";
 }
 .content .title {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   height: 350rpx;
   font-size: 80rpx;
 }
@@ -63,9 +69,15 @@
   height: 80rpx;
   border-radius: 50rpx;
   margin-bottom: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   background-color: #ffffff;
   border: 1rpx solid #000000;
 }
@@ -87,9 +99,15 @@
   color: #000000;
 }
 .content .login-form .icon {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   width: 100rpx;
 }
 .content .login-form .icon image {
@@ -108,24 +126,43 @@
 }
 .content .btn-box .forget-pass {
   padding-right: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
   font-size: 26rpx;
   letter-spacing: 5rpx;
 }
 .content .btn-box .btn-box {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
 }
 .content .btn-box .btn-box .login-btn {
   width: 350rpx;
   height: 80rpx;
   background-color: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   border-radius: 50rpx;
   font-size: 40rpx;
   margin: 50rpx 0;
@@ -134,8 +171,14 @@
 .content .btn-box .btn-box .register-btn {
   height: 100rpx;
   width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 

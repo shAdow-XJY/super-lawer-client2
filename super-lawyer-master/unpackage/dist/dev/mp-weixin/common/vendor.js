@@ -14564,7 +14564,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;exports.enterpriseApply = enterpriseApply;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.postLogin = postLogin;exports.register = register;exports.sendCheckCode = sendCheckCode;exports.getInfo = getInfo;exports.enterpriseApply = enterpriseApply;exports.authList = authList;exports.getAuthDetail = getAuthDetail;exports.confirm = confirm;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 53));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function postLogin(params) {
   return (0, _config.default)({
@@ -14610,6 +14610,39 @@ function enterpriseApply(params)
     header: {
       token: params.token,
       'content-type': 'application/json' } });
+
+
+}
+
+function authList(params)
+{
+  return (0, _config.default)({
+    url: "/v1/user/auth/list",
+    header: {
+      token: params.token } });
+
+
+
+}
+
+function getAuthDetail(params, data) {
+  return (0, _config.default)({
+    url: "/v1/user/auth/info/detail",
+    data: data,
+    header: {
+      token: params.token } });
+
+
+}
+
+function confirm(params, data) {
+  return (0, _config.default)({
+    url: "/v1/user/auth",
+    data: data,
+    method: 'POST',
+    header: {
+      token: params.token,
+      'content-type': 'application/x-www-form-urlencoded' } });
 
 
 }

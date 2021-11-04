@@ -48,6 +48,11 @@
 							@click="clickApply()" v-if="user_type != '管理员'">
 							<u-icon name="order" slot="right-icon" size="70"></u-icon>
 						</u-cell-item>
+						<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
+							title="管理认证申请" label="审核认证信息" :title-style="titlestytle" :label-style="labelstyle"
+							@click="clickApply()" v-if="user_type == '管理员'">
+							<u-icon name="order" slot="right-icon" size="70"></u-icon>
+						</u-cell-item>
 					</u-col>
 				</u-row>
 				<button class="exit_bt" @click="exit">退出登录</button>
@@ -117,10 +122,17 @@
 				}				
 
 			},
-			clickApply() {
-				uni.navigateTo({
-					url: '/pages/userApply/userApply'
-				})
+			clickApply() {	
+				if(this.user_type == "管理员"){
+					uni.navigateTo({
+						url: '/pages/userApply/userApplyConfirm'
+					})
+				}else{
+					uni.navigateTo({
+						url: '/pages/userApply/userApply'
+					})
+				}
+				
 			},
 			exit(){
 				uni.reLaunch({
