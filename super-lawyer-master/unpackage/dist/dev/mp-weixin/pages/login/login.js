@@ -203,7 +203,8 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
     return {
       passport: "510",
       password: "123456",
-
+      // passport:"test",
+      // password:"test00",
       passwordShow: true };
 
 

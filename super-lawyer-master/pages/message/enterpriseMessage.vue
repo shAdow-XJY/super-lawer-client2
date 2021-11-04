@@ -3,7 +3,8 @@
         <!-- <view class="h-bg">
              <image src="../../static/home.png" mode="scaleToFill"></image>
         </view> -->
-        <scroll-view class="msg-list" scroll-y="true" scroll-with-animation upper-threshold="50">
+		
+        <scroll-view :scroll-into-view="scrollViewId" scroll-y style="height: 100%;">
             <block v-for="(item,index) in msgPageList" :key="index">
                 <view class="u-f-ac m-list" @tap="toChat(item)">
                     <view class="u-f-ac m-list-avatar">
@@ -27,7 +28,7 @@
                 </view>
             </block>
         </scroll-view>
-		
+
 		<u-tabbar :list="tabBarList"></u-tabbar>
     </view>
 </template>
@@ -47,7 +48,8 @@
     					 content: "您的项目编号为:1 的律师处理已经审批完成，审批结果为拒绝；请联系管理员重新进行分配",
     					 content_sender: "陈月文"
                      },
-                ]
+                ],
+
             };
         },
         onLoad() {
