@@ -193,6 +193,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _user = __webpack_require__(/*! ../../network/user.js */ 51); //
 //
 //
@@ -220,9 +222,9 @@ var _user = __webpack_require__(/*! ../../network/user.js */ 51); //
 //
 //
 //
-var _default = { data: function data() {return { form: { name: "", address: "", code: "" }, linkImg: "", action: "http://112.74.166.85:9000/v1/file/upload?module=enterprise-license", result: "", resultType: "" };}, methods: { onSuccess: function onSuccess(data) {console.log(data);this.linkImg = data.data.url;console.log(this.linkImg);}, registerButton: function registerButton() {var _this = this;var all = true;this.resultType = "success";if (this.form.name == "") {
-        this.result = "企业名称为空";
-        all = false;
+//
+//
+var _default = { data: function data() {return { form: { name: "", address: "", code: "" }, linkImg: "", action: "http://112.74.166.85:9000/v1/file/upload?module=enterprise-license", result: "", resultType: "" };}, methods: { onSuccess: function onSuccess(data) {console.log(data);this.linkImg = data.data.url;console.log(this.linkImg);}, registerButton: function registerButton() {var _this = this;var all = true;this.resultType = "success";if (this.form.name == "") {this.result = "企业名称为空";all = false;
       }
       if (this.form.address == "") {
         this.result = "企业地址为空";
@@ -279,9 +281,7 @@ var _default = { data: function data() {return { form: { name: "", address: "", 
           }
 
         });
-
       }
-
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

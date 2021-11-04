@@ -62,3 +62,22 @@ export function createProject(params,projectDetail){
 		
 	})
 }
+
+
+export function getNotAllowcateProject(params){
+	return request({
+		url:"/v1/projects/unassigned",
+		header:{
+			token:params.token
+		}
+	})
+}
+
+export function getFeeProject(params){
+	return request({
+		url:"/v1/projects/fee-list",
+		header:{
+			token:params.token
+		}
+	})
+}

@@ -2018,10 +2018,17 @@ var store = new _vuex.default.Store({
     token: "",
     username: "",
     avatar: "",
-    isLogin: false },
+    isLogin: false,
+    authLists: [
+    {
+      name: '企业认证' },
+
+    {
+      name: '律师认证' }] },
+
+
 
   mutations: {},
-
 
   actions: {},
   modules: {
@@ -13807,7 +13814,8 @@ function enterpriseApply(params)
     method: "POST",
     data: params,
     header: {
-      token: params.token } });
+      token: params.token,
+      'content-type': 'application/json' } });
 
 
 }
@@ -13868,7 +13876,7 @@ function getEnterpriseDetail(params, id) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getProject = getProject;exports.getProjects = getProjects;exports.getUnassigneded = getUnassigneded;exports.assign = assign;exports.agree = agree;exports.createProject = createProject;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getProject = getProject;exports.getProjects = getProjects;exports.getUnassigneded = getUnassigneded;exports.assign = assign;exports.agree = agree;exports.createProject = createProject;exports.getNotAllowcateProject = getNotAllowcateProject;exports.getFeeProject = getFeeProject;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function getProject(params, projectId) {
   return (0, _config.default)({
@@ -13929,6 +13937,25 @@ function createProject(params, projectDetail) {
       'token': params.token,
       'content-type': 'application/json' } });
 
+
+
+}
+
+
+function getNotAllowcateProject(params) {
+  return (0, _config.default)({
+    url: "/v1/projects/unassigned",
+    header: {
+      token: params.token } });
+
+
+}
+
+function getFeeProject(params) {
+  return (0, _config.default)({
+    url: "/v1/projects/fee-list",
+    header: {
+      token: params.token } });
 
 
 }

@@ -45,7 +45,7 @@
 					<u-col span="6">
 						<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
 							title="认证申请" label="进行身份的认证" :title-style="titlestytle" :label-style="labelstyle"
-							@click="clickApply()">
+							@click="clickApply()" v-if="user_type != '管理员'">
 							<u-icon name="order" slot="right-icon" size="70"></u-icon>
 						</u-cell-item>
 					</u-col>
@@ -114,8 +114,7 @@
 					uni.navigateTo({
 						url: '/pages/lawyer/lawyerDetail'
 					})		
-				}
-				
+				}				
 
 			},
 			clickApply() {

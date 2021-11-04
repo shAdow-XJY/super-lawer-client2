@@ -42,7 +42,8 @@ export function enterpriseApply(params)
 		method:"POST",
 		data:params,
 		header:{
-			token: params.token
+			token: params.token,
+			'content-type': 'application/json'
 		}
 	})
 }

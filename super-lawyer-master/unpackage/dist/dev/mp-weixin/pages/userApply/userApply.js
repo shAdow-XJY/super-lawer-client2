@@ -95,6 +95,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uSubsection: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+    },
     uForm: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 282))
     },
@@ -220,43 +223,81 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {var that = this;return { action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", model: { "business_license_url": "", "degree": "", "id_number": "545615615156", "idcard_back_url": "", "idcard_front_url": "", "real_name": "阿梓从小就很可爱", "sex": '', "working_time": '' }, selectList: [{ value: '学士', label: '学士' }, { value: '硕士', label: '硕士' }, { value: '博士', label: '博士' }, { value: '其他', label: '其他' }], rules: { real_name: [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _user = __webpack_require__(/*! ../../network/user.js */ 51);
+var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72);
+var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+{
+  data: function data() {var _ref;
+    var that = this;
+    return _ref = {
+      action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover",
+      //律师认证信息
+      model: {
+        "business_license_url": "",
+        "degree": "",
+        "id_number": "",
+        "idcard_back_url": "",
+        "idcard_front_url": "",
+        "real_name": "",
+        "sex": '',
+        "working_time": '' },
+
+      //企业认证信息
+      form: {
+        name: "",
+        address: "",
+        code: "" },
+
+
+      //律师表单
+      selectList: [
+      {
+        value: '学士',
+        label: '学士' },
+
+      {
+        value: '硕士',
+        label: '硕士' },
+
+      {
+        value: '博士',
+        label: '博士' },
+
+      {
+        value: '其他',
+        label: '其他' }],
+
+
+      rules: {
+        real_name: [
         {
           required: true,
           message: '请输入姓名',
@@ -314,15 +355,27 @@ var _default = { data: function data() {var that = this;return { action: "http:/
       actionSheetShow: false,
       pickerShow: false,
       selectShow: false,
-      labelPosition: 'left' };
+      labelPosition: 'left' }, _defineProperty(_ref, "form",
+
+    {
+      name: "",
+      address: "",
+      code: "" }), _defineProperty(_ref, "linkImg",
+
+    ""), _defineProperty(_ref, "result",
+    ""), _defineProperty(_ref, "resultType",
+    ""), _defineProperty(_ref, "current",
+    0), _ref;
 
   },
 
-
-  computed: {
+  computed: _objectSpread({
     borderCurrent: function borderCurrent() {
       return this.border ? 0 : 1;
     } },
+  (0, _vuex.mapState)({
+    authLists: function authLists(state) {return state.authLists;} })),
+
 
   onReady: function onReady() {
     this.$refs.uForm.setRules(this.rules);
@@ -392,6 +445,81 @@ var _default = { data: function data() {var that = this;return { action: "http:/
           }
         });
       }
+    },
+
+    //企业表单认证
+    onSuccess: function onSuccess(data) {
+      console.log(data);
+      this.linkImg = data.data.url;
+      console.log(this.linkImg);
+    },
+    registerButton: function registerButton() {var _this2 = this;
+      var all = true;
+      this.resultType = "success";
+
+      if (this.form.name == "") {
+        this.result = "企业名称为空";
+        all = false;
+      }
+      if (this.form.address == "") {
+        this.result = "企业地址为空";
+        all = false;
+      }
+      if (this.form.code == "") {
+        this.result = "企业代码为空";
+        all = false;
+      }
+      if (this.linkImg == "") {
+        this.result = "企业营业执照为空";
+        all = false;
+      }
+      if (!all) {
+        setTimeout(function () {
+          _this2.$refs.tip.show({
+            title: _this2.result,
+            type: "error" });
+
+        }, 600);
+
+        return;
+      } else
+      {
+        var params = {
+          bussiness_license_url: this.linkImg,
+          enterprise_name: this.form.name,
+          enterprise_add: this.form.address,
+          institution_code: this.form.code,
+          token: getApp().globalData.user_token };
+
+        console.log(params);
+        (0, _user.enterpriseApply)(params).then(function (res) {
+          console.log(res.data);
+          if (res.data.code == 1)
+          {
+            _this2.$refs.tip.show({
+              title: "提交成功，待审核",
+              type: "success" });
+
+
+            setTimeout(function () {
+              uni.navigateBack({
+                delta: 1 });
+
+            }, 1500);
+          } else
+          {
+            _this2.$refs.tip.show({
+              title: res.data.message,
+              type: "error" });
+
+          }
+
+        });
+      }
+    },
+
+    changeAuth: function changeAuth(index) {
+      this.current = index;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

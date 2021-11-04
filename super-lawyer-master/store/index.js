@@ -10,9 +10,16 @@ const store = new Vuex.Store({
 			username: "",
 			avatar: "",
 			isLogin: false,
+			authLists:[
+				{
+					name:'企业认证'
+				},
+				{
+					name:'律师认证'
+				}
+			]
 		},
-    mutations: {
-			
+    mutations: {			
 		},
     actions: {},
 	modules:{

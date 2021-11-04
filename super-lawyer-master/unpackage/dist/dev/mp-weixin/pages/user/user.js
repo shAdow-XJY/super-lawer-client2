@@ -286,7 +286,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
       }
 
-
     },
     clickApply: function clickApply() {
       uni.navigateTo({

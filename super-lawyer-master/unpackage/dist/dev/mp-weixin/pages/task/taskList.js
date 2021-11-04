@@ -93,6 +93,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uSubsection: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+    },
     uCellGroup: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
     },
@@ -173,13 +176,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _vuex = __webpack_require__(/*! vuex */ 12);
 var _project = __webpack_require__(/*! ../../network/project.js */ 70);
 
 
 
 
-var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
+var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
 
 
 {
@@ -187,7 +193,19 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
     return {
       taskList: [],
       update: true,
-      user_type: '' };
+      user_type: '',
+      projectList: [
+      {
+        name: '查看全部项目' },
+
+      {
+        name: '查看未分配的项目' },
+
+      {
+        name: '查看已支付的项目' }],
+
+
+      current: 0 };
 
   },
   methods: {
@@ -211,6 +229,66 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
       uni.navigateTo({
         url: "../ProjectDetail/createNewProject" });
 
+    },
+    changeProject: function changeProject(index) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this.taskList = [];
+                _this.current = index;
+                console.log(index);
+                params = {
+                  token: getApp().globalData.user_token };if (!(
+
+                index == 0)) {_context.next = 9;break;}_context.next = 7;return (
+
+                  (0, _project.getProjects)(params).then(function (res) {
+                    if (res.data.code === 1) {
+                      _this.taskList = res.data.data.projects;
+                      for (var i = 0; i < _this.taskList.length; i++) {
+                        _this.taskList[i].commit_time = (0, _util.formateDate)(_this.taskList[i].commit_time);
+                        _this.taskList[i].end_time = (0, _util.formateDate)(_this.taskList[i].end_time);
+                      }
+                      _this.update = false;
+                      _this.$nextTick(function () {
+                        _this.update = true;
+                      });
+                    }
+                  }));case 7:_context.next = 19;break;case 9:if (!(
+
+                index == 1)) {_context.next = 15;break;}
+                console.log("执行到此处1了");_context.next = 13;return (
+                  (0, _project.getNotAllowcateProject)(params).then(function (res) {
+                    console.log(res);
+                    if (res.data.code === 1) {
+                      console.log(res);
+                      _this.taskList = res.data.data.projects;
+                      for (var i = 0; i < _this.taskList.length; i++) {
+                        _this.taskList[i].commit_time = (0, _util.formateDate)(_this.taskList[i].commit_time);
+                        _this.taskList[i].end_time = (0, _util.formateDate)(_this.taskList[i].end_time);
+                      }
+                      _this.update = false;
+                      _this.$nextTick(function () {
+                        _this.update = true;
+                      });
+                    }
+                  }));case 13:_context.next = 19;break;case 15:if (!(
+
+                index == 2)) {_context.next = 19;break;}
+                console.log("执行到此处0了");_context.next = 19;return (
+                  (0, _project.getFeeProject)(params).then(function (res) {
+                    console.log(res);
+                    if (res.data.code === 1) {
+
+                      _this.taskList = res.data.data.projects;
+                      for (var i = 0; i < _this.taskList.length; i++) {
+                        _this.taskList[i].commit_time = (0, _util.formateDate)(_this.taskList[i].commit_time);
+                        _this.taskList[i].end_time = (0, _util.formateDate)(_this.taskList[i].end_time);
+                      }
+                      _this.update = false;
+                      _this.$nextTick(function () {
+                        _this.update = true;
+                      });
+                    }
+                  }));case 19:case "end":return _context.stop();}}}, _callee);}))();
+
     } },
 
 
@@ -219,28 +297,28 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
   'tabBarList'])),
 
 
-  onShow: function onShow() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+  onShow: function onShow() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
               params = {
                 token: getApp().globalData.user_token };
 
               console.log("onshow");
 
-              _this.taskList = [];_context.next = 5;return (
+              _this2.taskList = [];_context2.next = 5;return (
                 (0, _project.getProjects)(params).then(function (res) {
                   console.log(res);
                   console.log(res.data.data.projects);
                   if (res.data.code === 1) {
-                    _this.taskList = res.data.data.projects;
-                    for (var i = 0; i < _this.taskList.length; i++) {
-                      _this.taskList[i].commit_time = (0, _util.formateDate)(_this.taskList[i].commit_time);
-                      _this.taskList[i].end_time = (0, _util.formateDate)(_this.taskList[i].end_time);
+                    _this2.taskList = res.data.data.projects;
+                    for (var i = 0; i < _this2.taskList.length; i++) {
+                      _this2.taskList[i].commit_time = (0, _util.formateDate)(_this2.taskList[i].commit_time);
+                      _this2.taskList[i].end_time = (0, _util.formateDate)(_this2.taskList[i].end_time);
                     }
-                    _this.update = false;
-                    _this.$nextTick(function () {
-                      _this.update = true;
+                    _this2.update = false;
+                    _this2.$nextTick(function () {
+                      _this2.update = true;
                     });
                   }
-                }));case 5:case "end":return _context.stop();}}}, _callee);}))();
+                }));case 5:case "end":return _context2.stop();}}}, _callee2);}))();
   },
   onLoad: function onLoad() {
     this.user_type = getApp().globalData.user_type;

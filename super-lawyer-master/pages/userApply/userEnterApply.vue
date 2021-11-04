@@ -1,28 +1,30 @@
 <template>
-	<view class="root">
-		<view class="top">用户注册</view>
-		<view class="info">
-			<u-form :model="form">
-				<u-form-item label="企业营业执照" label-width="200">
-					<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
-				</u-form-item>
-				<u-form-item label="企业名称" label-width="200">
-					<u-input v-model="form.name"></u-input>
-				</u-form-item>
-				<u-form-item label="企业地址" label-width="200">
-					<u-input v-model="form.address"></u-input>
-				</u-form-item>
-				<u-form-item label="企业代码" label-width="200">
-					<u-input v-model="form.code"></u-input>
-				</u-form-item>
-			</u-form>
+	<view >
+		<view class="root">
+			<view class="top">用户注册</view>
+			<view class="info">
+				<u-form :model="form">
+					<u-form-item label="企业营业执照" label-width="200">
+						<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
+					</u-form-item>
+					<u-form-item label="企业名称" label-width="200">
+						<u-input v-model="form.name"></u-input>
+					</u-form-item>
+					<u-form-item label="企业地址" label-width="200">
+						<u-input v-model="form.address"></u-input>
+					</u-form-item>
+					<u-form-item label="企业代码" label-width="200">
+						<u-input v-model="form.code"></u-input>
+					</u-form-item>
+				</u-form>
+			</view>
+			<view class="login-box" @click="registerButton">
+				<text>提交</text>
+				<text class="right-icon">→</text>
+			</view>
+			<u-toast :title="result" :type="resultType" ref="tip"/>
 		</view>
-		<view class="login-box" @click="registerButton">
-			<text>提交</text>
-			<text class="right-icon">→</text>
-		</view>
-		<u-toast :title="result" :type="resultType" ref="tip"/>
-	</view>
+	</view>	
 </template>
 
 <script>
@@ -39,7 +41,7 @@
 				action:"http://112.74.166.85:9000/v1/file/upload?module=enterprise-license",
 				
 				result:"",
-				resultType:"",
+				resultType:"",				
 			}
 			
 		},
@@ -111,12 +113,11 @@
 								})
 							}
 							
-					})
-					
-			}
-		
-		}
-	}
+					})			
+			}				
+		},
+	
+	},
 }
 </script>
 

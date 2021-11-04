@@ -1,7 +1,8 @@
 <template>
 	<view v-if="update">
+		<u-subsection :list="projectList" :current="current" @change="changeProject" v-if="user_type == '管理员'"></u-subsection>
 		<u-cell-group>
-			<u-cell-item v-for="task in taskList" :title="'项目名称: ' + task.project_name" :value=" '创建日期: '+ task.commit_time" icon="file-text" @click="toTaskDetail(task.project_id)"></u-cell-item>
+			<u-cell-item v-for="task in taskList" :title="task.project_name" :value="task.commit_time" icon="file-text" @click="toTaskDetail(task.project_id)"></u-cell-item>
 			<u-cell-item title="添加项目" :arrow="false" v-if="user_type == '企业用户'">
 				<u-button slot="right-icon" type="primary" size="mini" @click="addProject"><view style="font-size: 50rpx;">+</view></u-button>
 			</u-cell-item>
@@ -15,7 +16,9 @@
 	import {
 		getProject,
 		getProjects,
-		getUnassigneded
+		getUnassigneded,
+		getNotAllowcateProject,
+		getFeeProject,
 	}from '../../network/project.js'
 	import{
 		formateDate
@@ -25,7 +28,19 @@
 			return {
 				taskList:[],
 				update:true,
-				user_type:''
+				user_type:'',
+				projectList:[
+					{
+						name:'查看全部项目'
+					},
+					{
+						name:'查看未分配的项目'
+					},
+					{
+						name:'查看已支付的项目'
+					}
+				],
+				current:0
 			}
 		},
 		methods: {
@@ -49,6 +64,66 @@
 				uni.navigateTo({
 					url:"../ProjectDetail/createNewProject"
 				})
+			},
+		async changeProject(index){
+				this.taskList = [];
+				this.current = index
+				console.log(index)
+				let params = {
+					token : getApp().globalData.user_token,			
+				};			
+				if(index == 0)
+				{
+					await getProjects(params).then(res=>{
+						if(res.data.code ===1){
+							this.taskList = res.data.data.projects
+							for(let i = 0; i < this.taskList.length;i++){	
+								this.taskList[i].commit_time = formateDate(this.taskList[i].commit_time)
+								this.taskList[i].end_time =  formateDate(this.taskList[i].end_time)						
+							}	
+							this.update = false
+							this.$nextTick(()=>{
+								this.update = true
+							})
+						}
+					})
+				}
+				else if(index == 1){
+					console.log("执行到此处1了")
+					await getNotAllowcateProject(params).then(res =>{
+						console.log(res)
+						if(res.data.code ===1){
+							console.log(res)
+							this.taskList = res.data.data.projects
+							for(let i = 0; i < this.taskList.length;i++){	
+								this.taskList[i].commit_time = formateDate(this.taskList[i].commit_time)
+								this.taskList[i].end_time =  formateDate(this.taskList[i].end_time)						
+							}	
+							this.update = false
+							this.$nextTick(()=>{
+								this.update = true
+							})
+						}
+					})
+				}
+				else if(index == 2){
+					console.log("执行到此处0了")
+					await getFeeProject(params).then(res =>{
+						console.log(res)
+						if(res.data.code ===1){
+							
+							this.taskList = res.data.data.projects
+							for(let i = 0; i < this.taskList.length;i++){	
+								this.taskList[i].commit_time = formateDate(this.taskList[i].commit_time)
+								this.taskList[i].end_time =  formateDate(this.taskList[i].end_time)						
+							}	
+							this.update = false
+							this.$nextTick(()=>{
+								this.update = true
+							})
+						}
+					})
+				}
 			}
 			
 		},
@@ -63,7 +138,7 @@
 			}
 			console.log("onshow")	
 			
-			this.taskList = []			
+		this.taskList = []			
 		 await getProjects(params).then(res=>{
 				console.log(res)
 				console.log(res.data.data.projects)
