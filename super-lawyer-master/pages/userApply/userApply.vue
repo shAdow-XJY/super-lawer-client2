@@ -297,7 +297,7 @@ export default {
 			}
 			else{
 				let params = {
-					bussiness_license_url: this.linkImg,
+					business_license_url: this.linkImg,
 					enterprise_name: this.form.name,
 					enterprise_add: this.form.address,
 					institution_code: this.form.code,

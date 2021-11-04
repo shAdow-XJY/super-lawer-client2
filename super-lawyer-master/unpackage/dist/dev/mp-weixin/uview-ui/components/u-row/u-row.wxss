@@ -48,8 +48,7 @@
   content: "\e697";
 }
 .u-row {
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .u-row:after {
   display: table;
