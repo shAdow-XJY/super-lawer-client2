@@ -6,7 +6,9 @@
 	border-bottom-width: 5rpx !important;
 }
 .u-form-item--left{
- 	flex:0 0 190rpx !important
+ 	-webkit-box-flex:0 !important;
+ 	-webkit-flex:0 0 190rpx !important;
+ 	        flex:0 0 190rpx !important
 }
 .u-upload{
  	padding-left: 350rpx;
