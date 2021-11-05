@@ -81,3 +81,12 @@ export function confirm(params,data){
 	})
 }
 
+
+export function getAuthStatus(params){
+	return request({
+		url:"/v1/user/auth/info",
+		header:{
+			token:params.token,
+		}
+	})
+}

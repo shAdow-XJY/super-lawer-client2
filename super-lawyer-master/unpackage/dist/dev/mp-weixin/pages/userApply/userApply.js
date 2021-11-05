@@ -96,31 +96,31 @@ var components
 try {
   components = {
     uSubsection: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 230))
     },
     uForm: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 282))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 296))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 289))
+      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 303))
     },
     uInput: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 307))
+      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 321))
     },
     uUpload: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 300))
+      return Promise.all(/*! import() | uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 314))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 314))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 328))
     },
     uActionSheet: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-action-sheet/u-action-sheet */ "uview-ui/components/u-action-sheet/u-action-sheet").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 321))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-action-sheet/u-action-sheet */ "uview-ui/components/u-action-sheet/u-action-sheet").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 335))
     },
     uSelect: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 328))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 342))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 202))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 216))
     }
   }
 } catch (e) {
@@ -187,6 +187,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
 
 
 
@@ -365,7 +369,8 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
     ""), _defineProperty(_ref, "result",
     ""), _defineProperty(_ref, "resultType",
     ""), _defineProperty(_ref, "current",
-    0), _ref;
+    0), _defineProperty(_ref, "authShow",
+    true), _ref;
 
   },
 
@@ -520,7 +525,28 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
     changeAuth: function changeAuth(index) {
       this.current = index;
-    } } };exports.default = _default;
+    } },
+
+  onShow: function onShow() {var _this3 = this;
+    var params = {
+      token: getApp().globalData.user_token };
+
+    (0, _user.getAuthStatus)(params).then(function (res) {
+      if (res.data.code == 1) {
+        if (res.data.data.auth_info.auth_status == "认证中") {
+          _this3.authShow = false;
+          _this3.$refs.tip.show({
+            title: "您已提交认证，请耐心等待审核",
+            type: "success",
+            duration: 2000,
+            callback: function callback() {
+              uni.navigateBack({});
+            } });
+
+        }
+      }
+    });
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

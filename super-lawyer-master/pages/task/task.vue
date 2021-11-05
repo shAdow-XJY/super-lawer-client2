@@ -15,8 +15,9 @@
 					<u-cell-group v-else>
 						<u-cell-item  bg-color="#ffffff" title="项目名称" :value="project_detail.project_name" :arrow="false" class="cell"></u-cell-item>
 						<u-cell-item  bg-color="#ffffff" title="项目类型" :value="project_detail.project_type" :arrow="false" class="cell"></u-cell-item>
-						<u-cell-item  bg-color="#ffffff" title="支付情况" :value="project_detail.is_playment ?'已支付':'未支付'" :arrow="false" class="cell"></u-cell-item>
+						<u-cell-item  bg-color="#ffffff" title="支付情况" :value="!project_detail.pay_picture_url?'未支付':project_detail.is_payment?'已支付':'审核支付凭证中'" :arrow="project_detail.status==2" class="cell" @click="project_detail.status==2?uploadPaying():''"></u-cell-item>
 					</u-cell-group>
+					
 				</view>
 				<view class="date" v-if="buttonShow">
 					<u-icon size="50rpx" color="#fce100" name="warning" style="margin-right: 10rpx; float: left"></u-icon>					
@@ -55,6 +56,7 @@
 			</view>
 		</view>
 		<u-toast ref="uToast" />
+		<u-toast :title="result" :type="resultType" ref="tip"/>
 		<u-modal v-model="modelShow" :content="content"></u-modal>
 	</view>
 </template>
@@ -91,13 +93,25 @@
 			clickCompanyInfo(){
 				console.log(this.party)
 				if(this.party == "企业"){
+					if(this.project_detail)
 					uni.navigateTo({
 						url:"../enterprise/enterpriseDetail?enterpriseId=" + this.project_detail.enterprise.id
 					})
 				}else{
-					uni.navigateTo({
-						url:"../lawyer/lawyerDetail?lawyerId=" + this.project_detail.lawer.id
-					})
+					if(this.project_detail.status == 2){
+						uni.navigateTo({
+							url:"../lawyer/lawyerDetail?lawyerId=" + this.project_detail.lawer.id
+						})
+					}
+					else{
+						let message = this.project_detail.status == 0?"尚未分配律师，请联系管理员分配律师!":"已分配律师，请等待律师确认!"
+						this.$refs.tip.show({
+							title:message,
+							type:"warning",
+							duration:1500,							
+						})	
+					}
+										
 				}
 				
 			},
@@ -128,7 +142,6 @@
 							console.log("type = " + type)
 							setTimeout(()=>{
 								if(type === 2){
-									console.log("执行到此处了")
 									uni.switchTab({
 										url:"./taskList"
 									})								
@@ -140,6 +153,7 @@
 				if(type ===1){
 					await getProject(params,this.project_detail.id).then(res=>{
 						if(res.data.code ===1){
+							console.log(res.data.data.proj_detail)
 							this.project_detail = res.data.data.proj_detail
 							this.project_detail.commit_time = formateDate(this.project_detail.commit_time)
 							this.project_detail.create_time = formateDate(this.project_detail.create_time)
@@ -150,9 +164,16 @@
 							})																										
 						}
 					})
-				}
-				 
-				},				
+				}	 
+				},	
+			uploadPaying(){
+				console.log(this.project_detail)
+				console.log(this.project_detail.pay_picture_url)
+				
+				uni.navigateTo({
+					url:"../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status +" &url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url))
+				})
+			}
 		},
 		
 		computed:{
@@ -179,13 +200,12 @@
 				}
 			}
 		},
-		onLoad(option){
-			//模拟获取数据
-			let id = option.project_Id;
+		onShow(){
+			//模拟获取数据			
 			let params = {
 				token : getApp().globalData.user_token
 			}
-			getProject(params,id).then(res=>{
+			getProject(params,this.projectId).then(res=>{
 				console.log(res.data.data.proj_detail)
 				if(res.data.code ===1){
 					this.project_detail = res.data.data.proj_detail
@@ -194,9 +214,11 @@
 					this.project_detail.end_time = formateDate(this.project_detail.end_time)					
 				}
 			})
-			this.serviceId = 2;
-			this.enterpriseId = 6;
+		},
+		onLoad(option){
+			this.projectId = option.project_Id;
 		}
+		
 	}
 </script>
 	

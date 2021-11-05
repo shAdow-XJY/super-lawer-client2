@@ -6,7 +6,9 @@
 		<view class="infoList">
 			<u-cell-group :border="false">
 				<u-cell-item v-for="(item,index) in info" :title="item.key" :value="item.value" :arrow="item.key ==='企业详情' || (item.key ==='律师'&& project_status !=1)?true:false" :hover-class="item.value ===''?'cell-hover-class':'none'"  :title-style="titlestyle" @click = "clickCell(index,item.value)">				
-				</u-cell-item>		
+				</u-cell-item>
+				<u-cell-item  title="支付情况" :value="!pay_picture_url?'未支付':is_payment?'已支付':'审核支付凭证中'" :arrow="project_status==2" class="cell" @click="confirmPaying()" :title-style="titlestyle">
+				</u-cell-item>	
 			</u-cell-group>
 		</view>
 		<u-picker v-model="show" mode="selector" title="请选择律师" :range="lawyers" range-key="nickname" @confirm="confirm" @cancel="cancel"></u-picker>		
@@ -87,7 +89,9 @@
 				enterprise:{},
 				lawyer:{},
 				project_status:"",
-				update:true
+				update:true,
+				pay_picture_url:'',
+				is_payment:''
 			}
 		},
 		methods: {
@@ -123,46 +127,52 @@
 				}
 				var that = this
 				//最好加个确认按钮
-			await assign(this.lawyers[value[0]].id,this.projectId,params).then(res =>{
+				await assign(this.lawyers[value[0]].id,this.projectId,params).then(res =>{
 					console.log(res)
 					if(res.data.code === 0){
 						that.$refs.uToast.show({
 							title: "分配律师成功",
 							type: 'success',
 						})
+						getProject(params,this.projectId).then(res =>{
+							if(res.data.code ===1){
+								console.log(res.data.data.proj_detail)
+								console.log(res.data.data.proj_detail.lawer)
+								let detail = res.data.data.proj_detail
+								this.info[0].value = detail.project_name
+								this.info[1].value = detail.project_content
+								this.info[2].value = detail.from_name
+								this.info[3].value =  detail.project_type					
+								this.info[4].value = formateDate(new Date(detail.create_time))
+								this.info[5].value = detail.project_type
+								this.info[6].value = formateDate(new Date(detail.end_time))
+								this.info[7].value = detail.status === 0 ? "请点击选择律师": detail.status === 1 ? "等待律师确认": detail.to_name
+								this.enterprise = detail.enterprise
+								this.lawyer = detail.lawer	
+								this.is_payment = detail.is_payment
+								this.project_status = detail.status
+								this.pay_picture_url = detail.pay_picture_url
+								this.update =false
+								this.$nextTick(()=>{
+									this.update = true							
+								})
+							}
+						})
 					}
 					this.show =	false									
 				})
-			 await getProject(params,this.projectId).then(res =>{
-					if(res.data.code ===1){
-						console.log(res.data.data.proj_detail)
-						console.log(res.data.data.proj_detail.lawer)
-						let detail = res.data.data.proj_detail
-						this.info[0].value = detail.project_name
-						this.info[1].value = detail.project_content
-						this.info[2].value = detail.from_name
-						this.info[3].value =  detail.project_type					
-						this.info[4].value = formateDate(new Date(detail.create_time))
-						this.info[5].value = detail.project_type
-						this.info[6].value = formateDate(new Date(detail.end_time))
-						this.info[7].value = detail.status === 0 ? "请点击选择律师": detail.status === 1 ? "等待律师确认": detail.to_name
-						this.enterprise = detail.enterprise
-						this.lawyer = detail.lawer						
-						this.project_status = detail.status
-						this.update =false
-						this.$nextTick(()=>{
-							this.update = true							
-						})
-					}
+				
+			},
+			confirmPaying(){
+				uni.navigateTo({
+					url:"../paying/paying?id=" + this.projectId + "&status=" + this.project_status +" &url=" + encodeURIComponent(JSON.stringify(this.pay_picture_url))
 				})
 			}
-			
 		},
-		onLoad(option){
+		onShow(){
 			let params = {
 				token:getApp().globalData.user_token
 			}
-			this.projectId = option.project_Id
 			getProject(params,this.projectId).then(res =>{
 				if(res.data.code ===1){
 					console.log(res.data.data.proj_detail)
@@ -177,6 +187,9 @@
 					this.info[7].value = detail.status === 0 ? "请点击选择律师": detail.status === 1 ? "等待律师确认": detail.to_name
 					this.enterprise = detail.enterprise
 					this.lawyer = detail.lawer	
+					this.is_payment = detail.is_payment
+					this.project_status = detail.status
+					this.pay_picture_url = detail.pay_picture_url
 					this.project_status = detail.status
 				}
 			})
@@ -186,6 +199,9 @@
 					/* console.log(this.lawyers) */
 				}
 			})
+		},
+		onLoad(option){
+			this.projectId = option.project_Id
 		}
 	}
 </script>

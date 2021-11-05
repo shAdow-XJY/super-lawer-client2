@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uSubsection: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 230))
     },
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 237))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 244))
     }
   }
 } catch (e) {

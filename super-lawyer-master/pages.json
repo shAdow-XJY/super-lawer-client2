@@ -189,6 +189,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/paying/paying",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

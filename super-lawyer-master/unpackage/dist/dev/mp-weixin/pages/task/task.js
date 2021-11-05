@@ -96,25 +96,25 @@ var components
 try {
   components = {
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 237))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 244))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 268))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 282))
     },
     uRow: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-row/u-row */ "uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-row/u-row.vue */ 254))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-row/u-row */ "uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-row/u-row.vue */ 268))
     },
     uCol: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-col/u-col */ "uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-col/u-col.vue */ 261))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-col/u-col */ "uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-col/u-col.vue */ 275))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 202))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 216))
     },
     uModal: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-modal/u-modal */ "uview-ui/components/u-modal/u-modal").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-modal/u-modal.vue */ 275))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-modal/u-modal */ "uview-ui/components/u-modal/u-modal").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-modal/u-modal.vue */ 289))
     }
   }
 } catch (e) {
@@ -146,6 +146,13 @@ var render = function() {
         "padding-top": "30rpx"
       }
     : null
+
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.project_detail.status == 2 ? _vm.uploadPaying() : ""
+    }
+  }
+
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -249,6 +256,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _vuex = __webpack_require__(/*! vuex */ 12);
 var _project = __webpack_require__(/*! ../../network/project.js */ 70);
 
@@ -280,12 +289,24 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
     clickCompanyInfo: function clickCompanyInfo() {
       console.log(this.party);
       if (this.party == "企业") {
+        if (this.project_detail)
         uni.navigateTo({
           url: "../enterprise/enterpriseDetail?enterpriseId=" + this.project_detail.enterprise.id });
 
       } else {
-        uni.navigateTo({
-          url: "../lawyer/lawyerDetail?lawyerId=" + this.project_detail.lawer.id });
+        if (this.project_detail.status == 2) {
+          uni.navigateTo({
+            url: "../lawyer/lawyerDetail?lawyerId=" + this.project_detail.lawer.id });
+
+        } else
+        {
+          var message = this.project_detail.status == 0 ? "尚未分配律师，请联系管理员分配律师!" : "已分配律师，请等待律师确认!";
+          this.$refs.tip.show({
+            title: message,
+            type: "warning",
+            duration: 1500 });
+
+        }
 
       }
 
@@ -317,7 +338,6 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
                       console.log("type = " + type);
                       setTimeout(function () {
                         if (type === 2) {
-                          console.log("执行到此处了");
                           uni.switchTab({
                             url: "./taskList" });
 
@@ -329,6 +349,7 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
                 type === 1)) {_context.next = 8;break;}_context.next = 8;return (
                   (0, _project.getProject)(params, _this.project_detail.id).then(function (res) {
                     if (res.data.code === 1) {
+                      console.log(res.data.data.proj_detail);
                       _this.project_detail = res.data.data.proj_detail;
                       _this.project_detail.commit_time = (0, _util.formateDate)(_this.project_detail.commit_time);
                       _this.project_detail.create_time = (0, _util.formateDate)(_this.project_detail.create_time);
@@ -340,6 +361,13 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
                     }
                   }));case 8:case "end":return _context.stop();}}}, _callee);}))();
 
+    },
+    uploadPaying: function uploadPaying() {
+      console.log(this.project_detail);
+      console.log(this.project_detail.pay_picture_url);
+
+      uni.navigateTo({
+        url: "../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status + " &url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url)) });
 
     } },
 
@@ -368,13 +396,12 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
       }
     } }),
 
-  onLoad: function onLoad(option) {var _this2 = this;
-    //模拟获取数据
-    var id = option.project_Id;
+  onShow: function onShow() {var _this2 = this;
+    //模拟获取数据			
     var params = {
       token: getApp().globalData.user_token };
 
-    (0, _project.getProject)(params, id).then(function (res) {
+    (0, _project.getProject)(params, this.projectId).then(function (res) {
       console.log(res.data.data.proj_detail);
       if (res.data.code === 1) {
         _this2.project_detail = res.data.data.proj_detail;
@@ -383,8 +410,9 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
         _this2.project_detail.end_time = (0, _util.formateDate)(_this2.project_detail.end_time);
       }
     });
-    this.serviceId = 2;
-    this.enterpriseId = 6;
+  },
+  onLoad: function onLoad(option) {
+    this.projectId = option.project_Id;
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

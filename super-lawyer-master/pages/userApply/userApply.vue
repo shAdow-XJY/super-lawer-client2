@@ -1,69 +1,73 @@
 <template>
-	<view>
-		<u-subsection :list="authLists" :current="current" @change="changeAuth"></u-subsection>
-		<view class="wrap" v-if="current == 1">
-			<u-form :model="model" :rules="rules" ref="uForm" :errorType="['message']">
-				<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="account" label-width="120" :label-position="labelPosition" label="真实姓名" prop="real_name">
-					<u-input  placeholder="请输入真实姓名" v-model="model.real_name" type="text"></u-input>
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="身份证号" prop="id_number">
-					<u-input  placeholder="请输入真实姓名" v-model="model.id_number" type="text"></u-input>
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="性别" prop="sex">
-					<u-input  type="select" :select-open="actionSheetShow" v-model="model.sex" placeholder="请选择性别" @click="actionSheetShow = true"></u-input>
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="学位" prop="degree" label-width="150" >
-					<u-input type="select" :select-open="selectShow" v-model="model.degree" placeholder="请选择学位" @click="selectShow = true"></u-input>
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="工作时长" prop="working_time" label-width="150" >
-					<u-input  placeholder="请输入工作时长" v-model="model.working_time" type="text"></u-input>
-				</u-form-item>
-				<view class="fileTxt">资料上传</view>			
-				<u-form-item :label-position="labelPosition" label="身份证正面照" prop="idcard_front_url"  label-width="150">
-					<u-upload ref="UploadCf" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess1" :auto-upload="false"></u-upload>				
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="身份证背面照" prop="idcard_back_url" label-width="150">
-					<u-upload ref="UploadCb" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess2" :auto-upload="false"></u-upload>
-				</u-form-item>
-				<u-form-item :label-position="labelPosition" label="律师执照" label-width="150">
-					<u-upload ref="UploadL" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess3" :auto-upload="false"></u-upload>
-				</u-form-item>			
-			</u-form>
-			<u-button @click="submit" type="success">提交</u-button>
-			<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
-			<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="qualificationConfirm" ></u-select>	
-			<u-toast :title="result" :type="resultType" ref="tip"/>
-		</view>
-		
-		<view class="root" v-if="current == 0">
-			<view class="info">
-				<u-form :model="form">
-					<u-form-item label="企业营业执照" label-width="200" style="padding: 40rpx;">
-						<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
+	<view >
+		<view v-if="authShow">
+			
+			<u-subsection :list="authLists" :current="current" @change="changeAuth"></u-subsection>
+			<view class="wrap" v-if="current == 1">
+				<u-form :model="model" :rules="rules" ref="uForm" :errorType="['message']">
+					<u-form-item :leftIconStyle="{color: '#888', fontSize: '32rpx'}" left-icon="account" label-width="120" :label-position="labelPosition" label="真实姓名" prop="real_name">
+						<u-input  placeholder="请输入真实姓名" v-model="model.real_name" type="text"></u-input>
 					</u-form-item>
-					<u-form-item label="企业名称" label-width="200">
-						<u-input v-model="form.name"></u-input>
+					<u-form-item :label-position="labelPosition" label="身份证号" prop="id_number">
+						<u-input  placeholder="请输入真实姓名" v-model="model.id_number" type="text"></u-input>
 					</u-form-item>
-					<u-form-item label="企业地址" label-width="200">
-						<u-input v-model="form.address"></u-input>
+					<u-form-item :label-position="labelPosition" label="性别" prop="sex">
+						<u-input  type="select" :select-open="actionSheetShow" v-model="model.sex" placeholder="请选择性别" @click="actionSheetShow = true"></u-input>
 					</u-form-item>
-					<u-form-item label="企业代码" label-width="200">
-						<u-input v-model="form.code"></u-input>
+					<u-form-item :label-position="labelPosition" label="学位" prop="degree" label-width="150" >
+						<u-input type="select" :select-open="selectShow" v-model="model.degree" placeholder="请选择学位" @click="selectShow = true"></u-input>
 					</u-form-item>
+					<u-form-item :label-position="labelPosition" label="工作时长" prop="working_time" label-width="150" >
+						<u-input  placeholder="请输入工作时长" v-model="model.working_time" type="text"></u-input>
+					</u-form-item>
+					<view class="fileTxt">资料上传</view>			
+					<u-form-item :label-position="labelPosition" label="身份证正面照" prop="idcard_front_url"  label-width="150">
+						<u-upload ref="UploadCf" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess1" :auto-upload="false"></u-upload>				
+					</u-form-item>
+					<u-form-item :label-position="labelPosition" label="身份证背面照" prop="idcard_back_url" label-width="150">
+						<u-upload ref="UploadCb" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess2" :auto-upload="false"></u-upload>
+					</u-form-item>
+					<u-form-item :label-position="labelPosition" label="律师执照" label-width="150">
+						<u-upload ref="UploadL" :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess3" :auto-upload="false"></u-upload>
+					</u-form-item>			
 				</u-form>
+				<u-button @click="submit" type="success">提交</u-button>
+				<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
+				<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="qualificationConfirm" ></u-select>	
+				<u-toast :title="result" :type="resultType" ref="tip"/>
 			</view>
-			<view class="login-box" @click="registerButton">
-				<text>提交</text>
-				<text class="right-icon">→</text>
+			
+			<view class="root" v-if="current == 0">
+				<view class="info">
+					<u-form :model="form">
+						<u-form-item label="企业营业执照" label-width="200" style="padding: 40rpx;">
+							<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
+						</u-form-item>
+						<u-form-item label="企业名称" label-width="200">
+							<u-input v-model="form.name"></u-input>
+						</u-form-item>
+						<u-form-item label="企业地址" label-width="200">
+							<u-input v-model="form.address"></u-input>
+						</u-form-item>
+						<u-form-item label="企业代码" label-width="200">
+							<u-input v-model="form.code"></u-input>
+						</u-form-item>
+					</u-form>
+				</view>
+				<view class="login-box" @click="registerButton">
+					<text>提交</text>
+					<text class="right-icon">→</text>
+				</view>
+				
 			</view>
-			<u-toast :title="result" :type="resultType" ref="tip"/>
-		</view>
+		</view>	
+		<u-toast :title="result" :type="resultType" ref="tip"/>
+	</view>
 	
-	</view>	
 </template>
 
 <script>
-import {enterpriseApply} from "../../network/user.js"
+import {enterpriseApply,getAuthStatus} from "../../network/user.js"
 import {ApplyLawyer} from '../../network/lawyer.js'
 import {mapState,mapMutations} from 'vuex';
 export default {
@@ -177,7 +181,8 @@ export default {
 				linkImg:"",							
 				result:"",
 				resultType:"",
-				current:0,										
+				current:0,	
+				authShow:true
 		};
 	},
 		
@@ -332,8 +337,27 @@ export default {
 	
 	changeAuth(index){
 		this.current = index;
+	}	
+},
+onShow() {
+	let params = {
+		token:getApp().globalData.user_token
 	}
-	
+	getAuthStatus(params).then(res =>{
+		if(res.data.code == 1){		
+			if(res.data.data.auth_info.auth_status == "认证中"){
+				this.authShow = false
+				this.$refs.tip.show({
+					title:"您已提交认证，请耐心等待审核",
+					type:"success",
+					duration:2000,
+					callback:function(){
+						uni.navigateBack({})
+					}
+				})
+			}
+		}
+	})
 }
 };
 </script>

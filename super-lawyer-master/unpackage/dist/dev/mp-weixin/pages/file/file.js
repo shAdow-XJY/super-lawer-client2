@@ -96,19 +96,19 @@ var components
 try {
   components = {
     uSubsection: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 230))
     },
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 237))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 244))
     },
     uPicker: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-picker/u-picker.vue */ 237))
+      return Promise.all(/*! import() | uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-picker/u-picker.vue */ 251))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 202))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 216))
     }
   }
 } catch (e) {
@@ -166,6 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 24));
+
+
 
 
 
@@ -254,7 +256,9 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72);function _i
       enterprise: {},
       lawyer: {},
       project_status: "",
-      update: true };
+      update: true,
+      pay_picture_url: '',
+      is_payment: '' };
 
   },
   methods: {
@@ -297,39 +301,45 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72);function _i
                       title: "分配律师成功",
                       type: 'success' });
 
+                    (0, _project.getProject)(params, _this.projectId).then(function (res) {
+                      if (res.data.code === 1) {
+                        console.log(res.data.data.proj_detail);
+                        console.log(res.data.data.proj_detail.lawer);
+                        var detail = res.data.data.proj_detail;
+                        _this.info[0].value = detail.project_name;
+                        _this.info[1].value = detail.project_content;
+                        _this.info[2].value = detail.from_name;
+                        _this.info[3].value = detail.project_type;
+                        _this.info[4].value = (0, _util.formateDate)(new Date(detail.create_time));
+                        _this.info[5].value = detail.project_type;
+                        _this.info[6].value = (0, _util.formateDate)(new Date(detail.end_time));
+                        _this.info[7].value = detail.status === 0 ? "请点击选择律师" : detail.status === 1 ? "等待律师确认" : detail.to_name;
+                        _this.enterprise = detail.enterprise;
+                        _this.lawyer = detail.lawer;
+                        _this.is_payment = detail.is_payment;
+                        _this.project_status = detail.status;
+                        _this.pay_picture_url = detail.pay_picture_url;
+                        _this.update = false;
+                        _this.$nextTick(function () {
+                          _this.update = true;
+                        });
+                      }
+                    });
                   }
                   _this.show = false;
-                });case 6:_context.next = 8;return (
-                  (0, _project.getProject)(params, _this.projectId).then(function (res) {
-                    if (res.data.code === 1) {
-                      console.log(res.data.data.proj_detail);
-                      console.log(res.data.data.proj_detail.lawer);
-                      var detail = res.data.data.proj_detail;
-                      _this.info[0].value = detail.project_name;
-                      _this.info[1].value = detail.project_content;
-                      _this.info[2].value = detail.from_name;
-                      _this.info[3].value = detail.project_type;
-                      _this.info[4].value = (0, _util.formateDate)(new Date(detail.create_time));
-                      _this.info[5].value = detail.project_type;
-                      _this.info[6].value = (0, _util.formateDate)(new Date(detail.end_time));
-                      _this.info[7].value = detail.status === 0 ? "请点击选择律师" : detail.status === 1 ? "等待律师确认" : detail.to_name;
-                      _this.enterprise = detail.enterprise;
-                      _this.lawyer = detail.lawer;
-                      _this.project_status = detail.status;
-                      _this.update = false;
-                      _this.$nextTick(function () {
-                        _this.update = true;
-                      });
-                    }
-                  }));case 8:case "end":return _context.stop();}}}, _callee);}))();
+                });case 6:case "end":return _context.stop();}}}, _callee);}))();
+
+    },
+    confirmPaying: function confirmPaying() {
+      uni.navigateTo({
+        url: "../paying/paying?id=" + this.projectId + "&status=" + this.project_status + " &url=" + encodeURIComponent(JSON.stringify(this.pay_picture_url)) });
+
     } },
 
-
-  onLoad: function onLoad(option) {var _this2 = this;
+  onShow: function onShow() {var _this2 = this;
     var params = {
       token: getApp().globalData.user_token };
 
-    this.projectId = option.project_Id;
     (0, _project.getProject)(params, this.projectId).then(function (res) {
       if (res.data.code === 1) {
         console.log(res.data.data.proj_detail);
@@ -344,6 +354,9 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72);function _i
         _this2.info[7].value = detail.status === 0 ? "请点击选择律师" : detail.status === 1 ? "等待律师确认" : detail.to_name;
         _this2.enterprise = detail.enterprise;
         _this2.lawyer = detail.lawer;
+        _this2.is_payment = detail.is_payment;
+        _this2.project_status = detail.status;
+        _this2.pay_picture_url = detail.pay_picture_url;
         _this2.project_status = detail.status;
       }
     });
@@ -353,6 +366,9 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 72);function _i
         /* console.log(this.lawyers) */
       }
     });
+  },
+  onLoad: function onLoad(option) {
+    this.projectId = option.project_Id;
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

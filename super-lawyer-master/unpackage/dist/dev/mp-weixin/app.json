@@ -20,7 +20,8 @@
     "pages/userApply/userEnterApply",
     "pages/lawyer/lawyerApply",
     "pages/userApply/userApplyConfirm",
-    "pages/userApply/userApplyConfirmDetail"
+    "pages/userApply/userApplyConfirmDetail",
+    "pages/paying/paying"
   ],
   "subPackages": [],
   "window": {
@@ -59,5 +60,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

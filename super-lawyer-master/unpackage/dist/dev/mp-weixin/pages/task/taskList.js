@@ -94,19 +94,19 @@ var components
 try {
   components = {
     uSubsection: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 216))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-subsection/u-subsection */ "uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-subsection/u-subsection.vue */ 230))
     },
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 223))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 237))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 244))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 314))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 328))
     },
     uTabbar: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabbar/u-tabbar.vue */ 209))
+      return Promise.all(/*! import() | uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabbar/u-tabbar.vue */ 223))
     }
   }
 } catch (e) {
@@ -196,13 +196,13 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
       user_type: '',
       projectList: [
       {
-        name: '查看全部项目' },
+        name: '全部项目' },
 
       {
-        name: '查看未分配的项目' },
+        name: '未分配项目' },
 
       {
-        name: '查看已支付的项目' }],
+        name: '待审核已支付项目' }],
 
 
       current: 0 };
@@ -302,8 +302,8 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
                 token: getApp().globalData.user_token };
 
               console.log("onshow");
-
-              _this2.taskList = [];_context2.next = 5;return (
+              _this2.current = 0;
+              _this2.taskList = [];_context2.next = 6;return (
                 (0, _project.getProjects)(params).then(function (res) {
                   console.log(res);
                   console.log(res.data.data.projects);
@@ -318,7 +318,7 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 71);function _interop
                       _this2.update = true;
                     });
                   }
-                }));case 5:case "end":return _context2.stop();}}}, _callee2);}))();
+                }));case 6:case "end":return _context2.stop();}}}, _callee2);}))();
   },
   onLoad: function onLoad() {
     this.user_type = getApp().globalData.user_type;

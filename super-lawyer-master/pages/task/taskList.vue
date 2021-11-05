@@ -31,13 +31,13 @@
 				user_type:'',
 				projectList:[
 					{
-						name:'查看全部项目'
+						name:'全部项目'
 					},
 					{
-						name:'查看未分配的项目'
+						name:'未分配项目'
 					},
 					{
-						name:'查看已支付的项目'
+						name:'待审核已支付项目'
 					}
 				],
 				current:0
@@ -137,8 +137,8 @@
 				token : getApp().globalData.user_token,			
 			}
 			console.log("onshow")	
-			
-		this.taskList = []			
+			this.current = 0
+			this.taskList = []			
 		 await getProjects(params).then(res=>{
 				console.log(res)
 				console.log(res.data.data.projects)

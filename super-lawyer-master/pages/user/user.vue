@@ -59,6 +59,7 @@
 			</view>
 		</view>
 		<u-tabbar :list="tabBarList"></u-tabbar>
+		<u-toast :title="result" :type="resultType" ref="tip"/>
 	</view>
 </template>
 
@@ -127,9 +128,20 @@
 					uni.navigateTo({
 						url: '/pages/userApply/userApplyConfirm'
 					})
-				}else{
+				}
+				else if(this.user_type == "未认证用户"){
 					uni.navigateTo({
 						url: '/pages/userApply/userApply'
+					})
+				}
+				else{
+					this.$refs.tip.show({
+						title:"您已经认证！",
+						type:"success",
+						duration:1500,
+						callback:function(){
+							uni.navigateBack({})
+						}
 					})
 				}
 				
