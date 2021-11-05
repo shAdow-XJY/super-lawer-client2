@@ -63,9 +63,7 @@ page {
   font-family: "微软雅黑";
 }
 .u-form-item--left {
-  -webkit-box-flex: 0 !important;
-  -webkit-flex: 0 0 190rpx !important;
-          flex: 0 0 190rpx !important;
+  flex: 0 0 190rpx !important;
 }
 .u-upload {
   padding-left: 350rpx;
@@ -87,15 +85,9 @@ page {
   margin: 20px auto;
 }
 .root .row {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   height: 120rpx;
   margin-top: 70rpx;
 }
@@ -103,15 +95,9 @@ page {
   width: 280rpx;
 }
 .root .row .send-code {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   width: 220rpx;
   height: 100%;
   background-color: #000000;
@@ -122,15 +108,9 @@ page {
 .root .login-box {
   position: relative;
   margin-top: 70rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 120rpx;
   background-color: #000000;
   color: #e5e5e5;

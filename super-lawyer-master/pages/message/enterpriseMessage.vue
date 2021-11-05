@@ -5,7 +5,7 @@
         </view> -->
 		
         <scroll-view :scroll-into-view="scrollViewId" scroll-y style="height: 100%;">
-            <block v-for="(item,index) in msgPageList" :key="index">
+            <block v-if="msgPageList.length!=0" v-for="(item,index) in msgPageList" :key="index">
                 <view class="u-f-ac m-list" @tap="toChat(item)">
                     <view class="u-f-ac m-list-avatar">
                         <image :src="item.cover" mode="scaleToFill"></image>
@@ -40,14 +40,14 @@
         data() {
             return {
                 msgPageList: [
-                     {
-    					 contact_id: 15,
-    					 content_type: 2,
-    					 contact_name: "陈月文",
-    					 cover: "http://www.topgoer.cn/uploads/202009/cover_16326bd0af0aada3_small.jpg",
-    					 content: "您的项目编号为:1 的律师处理已经审批完成，审批结果为拒绝；请联系管理员重新进行分配",
-    					 content_sender: "陈月文"
-                     },
+          //            {
+    					 // contact_id: 0,
+    					 // content_type: 2,
+    					 // contact_name: "陈月文",
+    					 // cover: "http://www.topgoer.cn/uploads/202009/cover_16326bd0af0aada3_small.jpg",
+    					 // content: "您的项目编号为:1 的律师处理已经审批完成，审批结果为拒绝；请联系管理员重新进行分配",
+    					 // content_sender: "陈月文"
+          //            },
                 ],
 
             };

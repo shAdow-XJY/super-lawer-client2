@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,kP;AACAA,UAAU,CAACC,+BAAD,CAAV,C","file":"pages/userApply/userApplyConfirmDetail.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/userApply/userApplyConfirmDetail.vue'\ncreatePage(Page)"],"sourceRoot":""}

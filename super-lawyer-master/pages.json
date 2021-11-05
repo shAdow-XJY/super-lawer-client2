@@ -171,24 +171,7 @@
             }
             
         }
-        ,{
-            "path" : "pages/userApply/userApplyConfirm",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/userApply/userApplyConfirmDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
