@@ -1,93 +1,160 @@
 <template>
-	<view>		
-		律师信息页
-		<u-tabbar :list ="tabBarList"></u-tabbar>
-	</view>
+    <view class="homeBox">
+        <!-- <view class="h-bg">
+             <image src="../../static/home.png" mode="scaleToFill"></image>
+        </view> -->
+		
+        <scroll-view :scroll-into-view="scrollViewId" scroll-y style="height: 100%;">
+            <block v-if="msgPageList.length!=0" v-for="(item,index) in msgPageList" :key="index">
+                <view class="u-f-ac m-list" @tap="toChat(item)">
+                    <view class="u-f-ac m-list-avatar">
+                        <image :src="item.cover" mode="scaleToFill"></image>
+                        <!-- <uni-badge class="uni-badge-tips" :text="item.noreadnum" type="error" size="small"></uni-badge> -->
+                    </view>
+                    <view class="u-f u-column m-list-content">
+                        <view class="u-f u-f-jsb">
+                            <text class="name">{{item.contact_name}}</text>
+                            <!-- <text class="time">{{item.time|toLocalTime}}</text> -->
+                        </view>
+                        <view class="m-list-text">
+                            <template v-if="item.content_type==0">
+								{{item.content}}
+                            </template>
+                            <template v-if="item.content_type==1">
+                                [图片]
+                            </template>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </scroll-view>
+
+		<u-tabbar :list="tabBarList"></u-tabbar>
+    </view>
 </template>
 
 <script>
-	import {
-		getEnterpriseDetail,		
-	} from "../../network/enterprise.js"
+    import {getMsgList} from "../../network/msg.js"
 	import {mapGetters} from 'vuex'
-	export default {
-		data() {
-			return {
-				info:[
-					{
-						'key':'企业名称',
-						'value':'腾某公司'
-					},
-					{
-						'key':'联系方式',
-						'value':'12312312312'
-					},
-					{
-						'key':'机构代码',
-						'value':'12312312312'
-					},
-					{
-						'key':'企业地址',
-						'value':'广东省广州市中古'
-					},
-					{
-						'key':'认证时间',
-						'value':'2021-5-13'
-					}
-				],
-				titlestyle:{
-					'font-size':'30rpx',				
-					'font-weight':'520',
-					'color' :'#000000'
-				},
-				business_license:''
-			}
-		},
-		methods: {
-			
-		},
+    export default {
+        data() {
+            return {
+                msgPageList: [
+          //            {
+    					 // contact_id: 0,
+    					 // content_type: 2,
+    					 // contact_name: "陈月文",
+    					 // cover: "http://www.topgoer.cn/uploads/202009/cover_16326bd0af0aada3_small.jpg",
+    					 // content: "您的项目编号为:1 的律师处理已经审批完成，审批结果为拒绝；请联系管理员重新进行分配",
+    					 // content_sender: "陈月文"
+          //            },
+                ],
+
+            };
+        },
+        onLoad() {
+			//监听消息变动
+            // uni.$on('homePageChange',(data)=>{
+            //     this.getHomePageList()
+            // })
+        },
+        onShow() {
+            this.getHomePageList()
+        },
 		computed:{
 			...mapGetters([
 				'tabBarList'
 			])
 		},
-		onLoad(option) {
-			let id = option.enterpriseId
-			let params = {
-				token: getApp().globalData.user_token
-			}
-			getEnterpriseDetail(params,id).then(res =>{
-				if(res.data.code ==1){
-					console.log(res.data.data)
-					console.log(res.data.data.info)
-					this.info[0].value = res.data.data.info.enterprise_name
-					this.info[2].value = res.data.data.info.institution_code
-					this.info[3].value = res.data.data.info.enterprise_add								
-					this.info[4].value = formateDate(res.data.data.info.auth_time)		
-					this.business_license = res.data.data.info.business_license
-				}
-			})
-			
-		}
-	}
+        methods: {
+    		// 关闭滑块
+    		closeSwipe(){
+    			this.$refs.swipe.closeOther()
+    		},
+            toChat(item) {
+                console.log(item);
+                //this.clearRed(index)
+				getApp().globalData.currentTo_user_info=item;
+                uni.navigateTo({
+                    url: `/pages/chat-room/chat-room`
+                })      
+
+            },
+            getHomePageList(){
+    			let params = {
+    				token : getApp().globalData.user_token
+    			}
+    			getMsgList(params).then(res => {
+    				console.log(res.data);
+    				if(res.data.code==1){
+    					let arr = res.data.data.contacts;
+    					arr = arr?arr:[];
+    					this.msgPageList = arr
+    				}
+    			})
+            }
+        },
+    
+    }
 </script>
 
-<style>
-.u-border-bottom::after{
-		border-bottom-width: 2px;
-}
-.infolist{
-	margin-top: 20rpx;
-}
-.license .title{
-		font-size: 30rpx;
-		font-weight:520;
-		font-family: "微软雅黑";
-		color: #000000;
-		margin:40rpx 30rpx;
-}
-.license image{
-	margin-top: 20rpx;
-	margin-left: 50rpx;
-}
+<style lang="scss" scoped>
+    .h-bg{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        image{
+            width: 100%;
+            height: 100%;
+            filter: blur(1px);
+            opacity: 0.7;
+        }
+    }
+    .homeBox {
+        background-color: $uni-bg-color;
+        .m-list {
+            padding: 20rpx;
+            align-items: stretch;
+			display: flex;
+			flex-direction: row;
+            .m-list-avatar {
+                position: relative;
+                &>image {
+                    width: 100rpx;
+                    height: 100rpx;
+                    border-radius: 10%;
+                }
+                .uni-badge-tips{
+                    position: absolute;
+                    right: -10px;
+                    top: -10px;
+                }
+            }
+            .m-list-content {
+                margin-left: 20rpx;
+                flex-grow: 1;
+                overflow: hidden;
+                justify-content: space-between;
+                .name {
+                    font-size: $uni-font-size-base;
+                    color: $uni-text-color
+                }
+                .time {
+                    font-size: $uni-font-size-sm;
+                    color: $uni-text-color-grey;
+                }
+                .m-list-text {
+                    width: 100%;
+                    font-size: 30rpx;
+                    word-break: keep-all;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    color: $uni-text-color-grey;
+                    //border-bottom: 1px solid #a8a8a8;
+                }
+            }
+        }
+    }
 </style>
+

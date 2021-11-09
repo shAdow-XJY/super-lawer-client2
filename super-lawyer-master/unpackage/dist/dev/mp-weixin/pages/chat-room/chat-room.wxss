@@ -55,7 +55,8 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 .chatroomBox .chat-top.data-v-5addb5a8 {
   -webkit-box-flex: 1;

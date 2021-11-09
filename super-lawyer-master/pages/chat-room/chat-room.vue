@@ -10,7 +10,7 @@
                 <view class="body" v-for="(item, key) in msgList" :key="key" :id="'msg'+key">
                     <!-- 用户发出的消息 -->
                         <view class="my" :class="{'other':!isMe(item.sender_name)}" >
-							<view>msg{{key}}</view>
+							<!-- <view>msg{{key}}</view> -->
                             <view class="chat-list-content">
                                 <!-- 文字消息 -->
                                 <view v-if="item.content_type!=1" class="bubble">
@@ -180,7 +180,8 @@
     .chatroomBox{
         display:flex;
         flex-direction:column ;
-        height: 100%;
+		height: 100vh;
+		overflow: hidden;
         .chat-top{
             flex-grow:1;
             overflow:hidden;

@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uToast: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 216))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-toast/u-toast */ "uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-toast/u-toast.vue */ 224))
     }
   }
 } catch (e) {
@@ -201,8 +201,17 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
   data: function data() {
     return {
-      passport: "admin",
-      password: "admin",
+      // //admin
+      // passport:"admin",
+      // password:"admin",
+
+      //enter
+      // passport:"test",
+      // password:"test00",
+
+      //lawyer
+      passport: "510",
+      password: "123456",
 
       passwordShow: true };
 

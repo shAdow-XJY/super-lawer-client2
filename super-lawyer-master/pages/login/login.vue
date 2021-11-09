@@ -46,8 +46,17 @@
 		
 		data(){
 			return{
-				passport:"admin",
-				password:"admin",
+				// //admin
+				// passport:"admin",
+				// password:"admin",
+				
+				//enter
+				// passport:"test",
+				// password:"test00",
+				
+				//lawyer
+				passport:"510",
+				password:"123456",
 				
 				passwordShow: true,
 					

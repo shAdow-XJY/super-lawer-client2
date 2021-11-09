@@ -190,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _msg = __webpack_require__(/*! ../../network/msg.js */ 155); //
+var _msg = __webpack_require__(/*! ../../network/msg.js */ 61); //
 //
 //
 //
@@ -230,7 +230,7 @@ var _msg = __webpack_require__(/*! ../../network/msg.js */ 155); //
 //
 //
 //
-var chatBottom = function chatBottom() {Promise.all(/*! require.ensure | pages/chat-room/components/chat-bottom */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/chat-room/components/chat-bottom")]).then((function () {return resolve(__webpack_require__(/*! ./components/chat-bottom */ 370));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { chatBottom: chatBottom }, data: function data() {return { msgList: [{ content: "", content_type: -1, send_time: 0, sender_cover: "", sender_name: "" }], //消息列表
+var chatBottom = function chatBottom() {Promise.all(/*! require.ensure | pages/chat-room/components/chat-bottom */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/chat-room/components/chat-bottom")]).then((function () {return resolve(__webpack_require__(/*! ./components/chat-bottom */ 378));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { chatBottom: chatBottom }, data: function data() {return { msgList: [{ content: "", content_type: -1, send_time: 0, sender_cover: "", sender_name: "" }], //消息列表
       isHistoryLoading: false, scrollToView: '', timer: null //定时器   
     };}, computed: {}, onLoad: function onLoad(option) {// console.log("getApp().globalData.currentTo_user_info")
     // console.log(getApp().globalData.currentTo_user_info)
