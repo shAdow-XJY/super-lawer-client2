@@ -44,11 +44,11 @@
 		data() {
 			return {
 				form:{
-					passport:"",
-					password:"",
-					username:"",
-					phone:"",
-					email:"",
+					passport:"registerPage",
+					password:"registerPage",
+					username:"registerPage",
+					phone:"15626798678",
+					email:"1290232854@qq.com",
 					check_code:""
 				},
 				linkImg:"",
@@ -134,7 +134,9 @@
 									callback:function(){
 										uni.navigateBack({})
 									}
-								})						       								
+								})
+						       
+								
 							}
 							else{
 								this.$refs.tip.show({

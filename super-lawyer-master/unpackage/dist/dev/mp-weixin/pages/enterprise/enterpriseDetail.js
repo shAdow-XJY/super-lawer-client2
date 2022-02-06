@@ -193,32 +193,8 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70); //
 //
 //
 //
-var _default = { data: function data() {return { info: [{ 'key': '联系方式', 'value': '' }, { 'key': '电子邮件', 'value': '' }],
-      basic_info: [
-      {
-        'key': '企业名称',
-        'value': '' },
-
-      {
-        'key': '用户名',
-        'value': '' },
-
-      {
-        'key': '邮箱',
-        'value': '' },
-
-      {
-        'key': '电话',
-        'value': '' },
-
-      {
-        'key': '注册时间',
-        'value': '' }],
-
-
-      detail_info: [
-      {
-        'key': '企业名称',
+var _default = { data: function data() {return { info: [{ 'key': '企业名称', 'value': '' }, { 'key': '联系方式', 'value': '' }, {
+        'key': '电子邮件',
         'value': '' },
 
       {
@@ -234,13 +210,13 @@ var _default = { data: function data() {return { info: [{ 'key': '联系方式',
         'value': '' }],
 
 
+
       titlestyle: {
         'font-size': '30rpx',
         'font-weight': '520',
         'color': '#000000' },
 
-      business_license: '',
-      picName: '' };
+      business_license: '' };
 
   },
   methods: {},
@@ -254,27 +230,24 @@ var _default = { data: function data() {return { info: [{ 'key': '联系方式',
     if (id) {
       (0, _enterprise.getEnterpriseDetail)(params, id).then(function (res) {
         if (res.data.code == 1) {
-          _this.detail_info[0].value = res.data.data.info.enterprise_name;
-          _this.detail_info[1].value = res.data.data.info.institution_code;
-          _this.detail_info[2].value = res.data.data.info.enterprise_add;
-          _this.detail_info[3].value = (0, _util.formateDate)(res.data.data.info.auth_time);
+          // console.log(res.data.data)
+          // console.log(res.data.data.info)
+          _this.info[0].value = res.data.data.info.enterprise_name;
+          _this.info[3].value = res.data.data.info.institution_code;
+          _this.info[4].value = res.data.data.info.enterprise_add;
+          _this.info[5].value = (0, _util.formateDate)(res.data.data.info.auth_time);
           _this.business_license = res.data.data.info.business_license;
-          _this.info = _this.detail_info;
-          _this.picName = "企业执照";
         }
       });
     } else
     {
       (0, _user.getInfo)(params).then(function (res) {
         console.log(res);
-        _this.basic_info[0].value = res.data.data.basic_info.nickname;
-        _this.basic_info[1].value = res.data.data.basic_info.passport;
-        _this.basic_info[2].value = res.data.data.basic_info.email;
-        _this.basic_info[3].value = res.data.data.basic_info.phone;
-        _this.basic_info[4].value = (0, _util.formateDate)(res.data.data.basic_info.register_time);
+        _this.info[0].value = res.data.data.basic_info.passport;
+        _this.info[1].value = res.data.data.basic_info.phone;
+        _this.info[2].value = res.data.data.basic_info.email;
+        _this.info[5].value = (0, _util.formateDate)(res.data.data.basic_info.register_time);
         _this.business_license = res.data.data.basic_info.cover;
-        _this.info = _this.basic_info;
-        _this.picName = "用户头像";
       });
     }
   } };exports.default = _default;

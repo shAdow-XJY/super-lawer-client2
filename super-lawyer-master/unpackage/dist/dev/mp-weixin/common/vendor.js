@@ -3321,7 +3321,7 @@ function confirmUploadPaying(params, id, result) {
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var admin = [
 {
   "text": "业务",
-  "pagePath": "/pages/project/projectList",
+  "pagePath": "/pages/task/taskList",
   "iconPath": "/static/recevingOrder.png",
   "selectedIconPath": "/static/recevingOrder-active.png" },
 
@@ -3342,7 +3342,7 @@ var lawyer = [
 
 {
   "text": "业务",
-  "pagePath": "/pages/project/projectList",
+  "pagePath": "/pages/task/taskList",
   "iconPath": "/static/recevingOrder.png",
   "selectedIconPath": "/static/recevingOrder-active.png" },
 
@@ -3364,7 +3364,7 @@ var enterprise = [
 
 {
   "text": "业务",
-  "pagePath": "/pages/project/projectList",
+  "pagePath": "/pages/task/taskList",
   "iconPath": "/static/recevingOrder.png",
   "selectedIconPath": "/static/recevingOrder-active.png" },
 

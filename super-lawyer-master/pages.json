@@ -19,6 +19,15 @@
             
         }
         ,{
+            "path" : "pages/file/file",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
             "path" : "pages/user/user",
             "style" :                                                                                    
             {
@@ -62,9 +71,18 @@
                 "enablePullDownRefresh": false
             }
             
-        }   
+        }
         ,{
-            "path" : "pages/project/projectDetail",
+            "path" : "pages/toDoThings/toDoThings",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/ProjectDetail/ProjectDetail",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -99,7 +117,7 @@
             
         }
         ,{
-            "path" : "pages/project/projectList",
+            "path" : "pages/task/taskList",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -118,7 +136,7 @@
             
         }
         ,{
-            "path" : "pages/project/createNewProject",
+            "path" : "pages/ProjectDetail/createNewProject",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -134,7 +152,25 @@
                 "enablePullDownRefresh": false
             }
             
-        }     
+        }
+        ,{
+            "path" : "pages/userApply/userEnterApply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/lawyer/lawyerApply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
         ,{
             "path" : "pages/userApply/userApplyConfirm",
             "style" :                                                                                    
@@ -173,7 +209,7 @@
 		"list":[ 
 		{
 			"text":"业务详情",
-			"pagePath":"pages/project/projectList",
+			"pagePath":"pages/task/taskList",
 			"iconPath":"static/recevingOrder.png",
 			"selectedIconPath":"static/recevingOrder-active.png"
 		},	
@@ -191,7 +227,7 @@
 		},
 		{
 			"text":"业务",
-			"pagePath":"pages/project/projectList"
+			"pagePath":"pages/task/taskList"
 		},
 		{
 			"text":"律师消息",

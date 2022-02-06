@@ -1,4 +1,4 @@
- <template>
+<template>
 	<view v-if="update">	
 		<view class="header">
 			<view class="info">
@@ -131,7 +131,7 @@
 					let params ={
 						token: getApp().globalData.user_token
 					}
-				 await agree(type,this.project_detail.id,params).then(async res=>{
+				 await agree(type,this.project_detail.id,params).then(res=>{
 						console.log(res)
 						if(res.data.code ===1){
 							that.$refs.uToast.show({
@@ -139,51 +139,43 @@
 								type: 'success',
 								duration: 1000
 							})
-							if(type === 2){
-								uni.switchTab({
-									url:"../project/projectList",
-									success:(res)=>{
-										let page = getCurrentPages()[0]
-										if(!page)return;
-										page.$vm.updateProjectsList()
-									}
-								})	
-							}
-							else if(type === 1){
-								this.project_detail.status = 2;
-								setTimeout(async ()=>{
-									 await getProject(params,this.project_detail.id).then(res=>{
-										if(res.data.code ===1){
-											console.log(res.data.data.proj_detail)
-											if(res.data.data.proj_detail.status != 1){
-												this.project_detail = res.data.data.proj_detail
-												this.project_detail.commit_time = formateDate(this.project_detail.commit_time)
-												this.project_detail.create_time = formateDate(this.project_detail.create_time)
-												this.project_detail.end_time = formateDate(this.project_detail.end_time)	
-											}																																								
-										}
-									})
-								},5000)
-							}							
+							console.log("type = " + type)
+							setTimeout(()=>{
+								if(type === 2){
+									uni.switchTab({
+										url:"./taskList"
+									})								
+								}
+							},2000)
+							
 						}						
-					})					 
+					})	
+				if(type ===1){
+					await getProject(params,this.project_detail.id).then(res=>{
+						if(res.data.code ===1){
+							console.log(res.data.data.proj_detail)
+							this.project_detail = res.data.data.proj_detail
+							this.project_detail.commit_time = formateDate(this.project_detail.commit_time)
+							this.project_detail.create_time = formateDate(this.project_detail.create_time)
+							this.project_detail.end_time = formateDate(this.project_detail.end_time)
+							this.update = false						
+							this.$nextTick(()=>{
+								this.update = true							
+							})																										
+						}
+					})
+				}	 
 				},	
 			uploadPaying(){
+				console.log(this.project_detail)
+				console.log(this.project_detail.pay_picture_url)
+				
 				uni.navigateTo({
 					url:"../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status +" &url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url))
 				})
 			}
 		},
-		watch:{
-			project_detail:{
-				handler:function(newVal,oldVal){
-					console.log(newVal);
-					console.log(oldVal);
-				},
-				deep:true,
-				immediate:true
-			}
-		},
+		
 		computed:{
 			...mapGetters([
 				'tabBarList'

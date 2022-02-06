@@ -2,19 +2,23 @@
   "pages": [
     "pages/login/login",
     "pages/message/message",
+    "pages/file/file",
     "pages/user/user",
     "pages/task/task",
     "pages/register/register",
     "pages/userInfo/userInfo",
     "pages/userApply/userApply",
-    "pages/project/projectDetail",
+    "pages/toDoThings/toDoThings",
+    "pages/ProjectDetail/ProjectDetail",
     "pages/service/serviceFangan",
     "pages/enterprise/enterpriseDetail",
     "pages/message/enterpriseMessage",
-    "pages/project/projectList",
+    "pages/task/taskList",
     "pages/lawyer/lawyerDetail",
-    "pages/project/createNewProject",
+    "pages/ProjectDetail/createNewProject",
     "pages/chat-room/chat-room",
+    "pages/userApply/userEnterApply",
+    "pages/lawyer/lawyerApply",
     "pages/userApply/userApplyConfirm",
     "pages/userApply/userApplyConfirmDetail",
     "pages/paying/paying"
@@ -30,7 +34,7 @@
     "list": [
       {
         "text": "业务详情",
-        "pagePath": "pages/project/projectList",
+        "pagePath": "pages/task/taskList",
         "iconPath": "static/recevingOrder.png",
         "selectedIconPath": "static/recevingOrder-active.png"
       },
@@ -48,7 +52,7 @@
       },
       {
         "text": "业务",
-        "pagePath": "pages/project/projectList"
+        "pagePath": "pages/task/taskList"
       },
       {
         "text": "律师消息",

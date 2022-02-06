@@ -1,0 +1,20 @@
+
+.idCard .title,.license .title{
+		font-size: 40rpx;
+		font-weight:800;
+		font-family: "微软雅黑";
+		text-align: center;
+		color: #000000;
+		margin:40rpx 30rpx;
+}
+.idCard image,.license image{
+	text-align: center;
+	margin-top: 20rpx;
+	margin-left: 50rpx;
+}
+.btn{
+	height: 80rpx;
+	margin: 80rpx 0;
+	padding: 0 30rpx;
+}
+

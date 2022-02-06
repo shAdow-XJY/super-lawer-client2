@@ -321,63 +321,55 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70);function _interop
         url: "../service/serviceFangan?serviceId=" + this.project_detail.service.id });
 
     },
-    clickButton: function clickButton(e, type) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var that, params;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    clickButton: function clickButton(e, type) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var that, params;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 that = _this;
                 that.model = true;
                 params = {
-                  token: getApp().globalData.user_token };_context3.next = 5;return (
+                  token: getApp().globalData.user_token };_context.next = 5;return (
 
-                  (0, _project.agree)(type, _this.project_detail.id, params).then( /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(res) {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                              console.log(res);
-                              if (res.data.code === 1) {
-                                that.$refs.uToast.show({
-                                  title: "操作成功",
-                                  type: 'success',
-                                  duration: 1000 });
+                  (0, _project.agree)(type, _this.project_detail.id, params).then(function (res) {
+                    console.log(res);
+                    if (res.data.code === 1) {
+                      that.$refs.uToast.show({
+                        title: "操作成功",
+                        type: 'success',
+                        duration: 1000 });
 
-                                if (type === 2) {
-                                  uni.switchTab({
-                                    url: "../project/projectList",
-                                    success: function success(res) {
-                                      var page = getCurrentPages()[0];
-                                      if (!page) return;
-                                      page.$vm.updateProjectsList();
-                                    } });
+                      console.log("type = " + type);
+                      setTimeout(function () {
+                        if (type === 2) {
+                          uni.switchTab({
+                            url: "./taskList" });
 
-                                } else
-                                if (type === 1) {
-                                  _this.project_detail.status = 2;
-                                  setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                                              (0, _project.getProject)(params, _this.project_detail.id).then(function (res) {
-                                                if (res.data.code === 1) {
-                                                  console.log(res.data.data.proj_detail);
-                                                  if (res.data.data.proj_detail.status != 1) {
-                                                    _this.project_detail = res.data.data.proj_detail;
-                                                    _this.project_detail.commit_time = (0, _util.formateDate)(_this.project_detail.commit_time);
-                                                    _this.project_detail.create_time = (0, _util.formateDate)(_this.project_detail.create_time);
-                                                    _this.project_detail.end_time = (0, _util.formateDate)(_this.project_detail.end_time);
-                                                  }
-                                                }
-                                              }));case 2:case "end":return _context.stop();}}}, _callee);})),
-                                  5000);
-                                }
-                              }case 2:case "end":return _context2.stop();}}}, _callee2);}));return function (_x) {return _ref.apply(this, arguments);};}()));case 5:case "end":return _context3.stop();}}}, _callee3);}))();
+                        }
+                      }, 2000);
+
+                    }
+                  }));case 5:if (!(
+                type === 1)) {_context.next = 8;break;}_context.next = 8;return (
+                  (0, _project.getProject)(params, _this.project_detail.id).then(function (res) {
+                    if (res.data.code === 1) {
+                      console.log(res.data.data.proj_detail);
+                      _this.project_detail = res.data.data.proj_detail;
+                      _this.project_detail.commit_time = (0, _util.formateDate)(_this.project_detail.commit_time);
+                      _this.project_detail.create_time = (0, _util.formateDate)(_this.project_detail.create_time);
+                      _this.project_detail.end_time = (0, _util.formateDate)(_this.project_detail.end_time);
+                      _this.update = false;
+                      _this.$nextTick(function () {
+                        _this.update = true;
+                      });
+                    }
+                  }));case 8:case "end":return _context.stop();}}}, _callee);}))();
 
     },
     uploadPaying: function uploadPaying() {
+      console.log(this.project_detail);
+      console.log(this.project_detail.pay_picture_url);
+
       uni.navigateTo({
         url: "../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status + " &url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url)) });
 
     } },
-
-  watch: {
-    project_detail: {
-      handler: function handler(newVal, oldVal) {
-        console.log(newVal);
-        console.log(oldVal);
-      },
-      deep: true,
-      immediate: true } },
 
 
   computed: _objectSpread(_objectSpread({},
