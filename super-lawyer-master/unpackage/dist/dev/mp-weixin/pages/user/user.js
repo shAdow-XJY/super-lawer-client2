@@ -235,9 +235,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 var _user = __webpack_require__(/*! ../../network/user.js */ 51);
 
 
@@ -256,12 +253,12 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 
       labelstyle: {
         'font-size': '25rpx',
-        'letter-spacing': '2rpx' } };
+        'letter-spacing': '2rpx' },
 
+      RoleImage: "" };
 
   },
   onLoad: function onLoad() {var _this = this;
-    console.log("用户token：" + getApp().globalData.user_token);
     var params = {
       token: getApp().globalData.user_token };
 
@@ -271,12 +268,10 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
         _this.user_type = getApp().globalData.user_type;
         _this.user = res.data.data.basic_info;
         getApp().globalData.user_info = _this.user;
-        console.log(_this.user);
-        console.log(res.data.data.basic_info);
-        console.log(_this.user.register_time);
         _this.user.register_time = (0, _util.formateDate)(_this.user.register_time);
         _this.RoleImage = _this.user.cover;
-        console.log(_this.user_type);
+        console.log(_this.RoleImage);
+
       }
 
     });
@@ -293,8 +288,17 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
         uni.navigateTo({
           url: '/pages/lawyer/lawyerDetail' });
 
-      }
+      } else
+      {
+        this.$refs.tip.show({
+          title: "您还未认证！",
+          type: "warning",
+          duration: 1500,
+          callback: function callback() {
+            uni.navigateBack({});
+          } });
 
+      }
     },
     clickApply: function clickApply() {
       if (this.user_type == "管理员") {

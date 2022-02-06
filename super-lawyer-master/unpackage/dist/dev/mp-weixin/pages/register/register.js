@@ -211,11 +211,11 @@ var _tool = __webpack_require__(/*! ../../js_sdk/mineking-tool/tool.js */ 88);fu
   data: function data() {
     return {
       form: {
-        passport: "registerPage",
-        password: "registerPage",
-        username: "registerPage",
-        phone: "15626798678",
-        email: "1290232854@qq.com",
+        passport: "",
+        password: "",
+        username: "",
+        phone: "",
+        email: "",
         check_code: "" },
 
       linkImg: "",
@@ -301,8 +301,6 @@ var _tool = __webpack_require__(/*! ../../js_sdk/mineking-tool/tool.js */ 88);fu
               callback: function callback() {
                 uni.navigateBack({});
               } });
-
-
 
           } else
           {

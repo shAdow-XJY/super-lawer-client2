@@ -1,7 +1,6 @@
 <template>
 	<view >
-		<view v-if="authShow">
-			
+		<view v-if="authShow">			
 			<u-subsection :list="authLists" :current="current" @change="changeAuth"></u-subsection>
 			<view class="wrap" v-if="current == 1">
 				<u-form :model="model" :rules="rules" ref="uForm" :errorType="['message']">
@@ -35,11 +34,10 @@
 				<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
 				<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="qualificationConfirm" ></u-select>	
 				<u-toast :title="result" :type="resultType" ref="tip"/>
-			</view>
-			
+			</view>			
 			<view class="root" v-if="current == 0">
 				<view class="info">
-					<u-form :model="form">
+					<u-form :model="form" :rules="rules" ref="uForm" :errorType="['message']">
 						<u-form-item label="企业营业执照" label-width="200" style="padding: 40rpx;">
 							<u-upload :action="action" :max-count="1" :max-size="1*1024*1024" @on-success="onSuccess" ></u-upload>
 						</u-form-item>

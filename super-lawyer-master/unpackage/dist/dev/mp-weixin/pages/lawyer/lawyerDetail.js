@@ -181,6 +181,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
 var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);
 
 
@@ -211,11 +215,35 @@ var _user = __webpack_require__(/*! ../../network/user.js */ 51); //
 //
 //
 //
-var _default = { data: function data() {return { info: [{ 'key': '名称', 'value': '腾某公司' }, { 'key': '性别', 'value': '' }, { 'key': '学位', 'value': '12312312312' }, { 'key': '认证时间', 'value': '2021-5-13' }, { 'key': '从业时间',
-        'value': '广东省广州市中古' },
+//
+//
+//
+//
+var _default = { data: function data() {return { info: [], basic_info: [{ 'key': '名称', 'value': '' }, { 'key': '用户名', 'value': '' }, { 'key': '邮箱', 'value': '' }, { 'key': '电话', 'value': '' }, { 'key': '注册时间', 'value': '' }],
+
+      detail_info: [
+      {
+        'key': '名称',
+        'value': '' },
 
       {
-        'key': '身份证',
+        'key': '性别',
+        'value': '' },
+
+      {
+        'key': '学位',
+        'value': '12312312312' },
+
+      {
+        'key': '认证时间',
+        'value': '2021-5-13' },
+
+      {
+        'key': '从业时间',
+        'value': '' },
+
+      {
+        'key': "身份证号",
         'value': '' }],
 
 
@@ -224,7 +252,8 @@ var _default = { data: function data() {return { info: [{ 'key': '名称', 'valu
         'font-weight': '520',
         'color': '#000000' },
 
-      lawyer: {} };
+      lawyer: {},
+      showIdMessage: false };
 
   },
   methods: {},
@@ -237,24 +266,34 @@ var _default = { data: function data() {return { info: [{ 'key': '名称', 'valu
       token: getApp().globalData.user_token };
 
     if (id) {
+      this.showIdMessage = true;
       (0, _lawyer.getLawyerById)(params, id).then(function (res) {
         console.log(res.data);
         if (res.data.code == 1) {
           console.log(res.data.data);
           _this.lawyer = res.data.data.info;
-          _this.info[0].value = _this.lawyer.real_name;
-          _this.info[1].value = _this.lawyer.sex == 1 ? "女" : "男";
-          _this.info[2].value = _this.lawyer.degree;
-          _this.info[3].value = (0, _util.formateDate)(_this.lawyer.auth_time);
-          _this.info[4].value = _this.lawyer.working_time;
-          _this.info[5].value = _this.lawyer.id_number;
-
+          _this.detail_info[0].value = _this.lawyer.real_name;
+          _this.detail_info[1].value = _this.lawyer.sex == 1 ? "女" : "男";
+          _this.detail_info[2].value = _this.lawyer.degree;
+          _this.detail_info[3].value = (0, _util.formateDate)(_this.lawyer.auth_time);
+          _this.detail_info[4].value = _this.lawyer.working_time;
+          _this.detail_info[5].value = _this.lawyer.id_number;
+          _this.info = _this.detail_info;
         }
       });
     } else
     {
       (0, _user.getInfo)(params).then(function (res) {
-        console.log(res);
+        if (res.data.code == 1) {
+          console.log(res.data.data);
+          _this.lawyer = res.data.data.basic_info;
+          _this.basic_info[0].value = _this.lawyer.nickname;
+          _this.basic_info[1].value = _this.lawyer.passport;
+          _this.basic_info[2].value = _this.lawyer.email;
+          _this.basic_info[3].value = _this.lawyer.phone;
+          _this.basic_info[4].value = (0, _util.formateDate)(_this.lawyer.register_time);
+          _this.info = _this.basic_info;
+        }
       });
     }
   } };exports.default = _default;
