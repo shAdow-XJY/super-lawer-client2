@@ -4,8 +4,7 @@
 			<view class="bg">
 				<view class="box">
 					<view class="box-hd">
-						<text class="name">{{user.nickname}}</text>
-						
+						<text class="name">{{user.nickname}}</text>				
 						<view class="avator">
 							<u-avatar class="pic" :src="RoleImage" size="200"></u-avatar>
 						</view>
@@ -15,15 +14,13 @@
 							<u-col span="6">
 								<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
 									title="认证状态" :label="user_type" :title-style="titlestytle" :label-style="labelstyle"
-									>
-									
+									>									
 								</u-cell-item>
 							</u-col>
 							<u-col span="6">
 								<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
-									title="认证时长" :label="user.register_time" :title-style="titlestytle" :label-style="labelstyle"
-									>
-									
+									:title="user_type === '未认证用户'?'注册时间':'认证时间'" :label="user.register_time" :title-style="titlestytle" :label-style="labelstyle"
+									>									
 								</u-cell-item>
 							</u-col>
 						</u-row>
@@ -35,7 +32,7 @@
 			<view class="txt">常用操作</view>
 			<view class="op_bt">
 				<u-row>
-					<u-col span="6">
+					<u-col span="6" v-if="user_type != '管理员'" >
 						<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
 							title="个人信息" label="查看个人信息" :title-style="titlestytle" :label-style="labelstyle"
 							@click="clickInfo()">
@@ -84,11 +81,11 @@
 				labelstyle: {
 					'font-size': '25rpx',
 					'letter-spacing': '2rpx'
-				}
+				},
+				RoleImage:""
 			};
 		},
 		onLoad() {
-			console.log("用户token：" + getApp().globalData.user_token)
 			let params = {
 				token: getApp().globalData.user_token
 			}
@@ -98,12 +95,10 @@
 					this.user_type = getApp().globalData.user_type;
 					this.user = res.data.data.basic_info;
 					getApp().globalData.user_info = this.user;
-					console.log(this.user);
-					console.log(res.data.data.basic_info);
-					console.log(this.user.register_time);
-					this.user.register_time = formateDate(this.user.register_time)
+					this.user.register_time = formateDate(this.user.register_time)				
 					this.RoleImage = this.user.cover
-					console.log(this.user_type)
+					console.log(this.RoleImage)
+				
 				}
 
 			})
@@ -120,8 +115,17 @@
 					uni.navigateTo({
 						url: '/pages/lawyer/lawyerDetail'
 					})		
-				}				
-
+				}
+				else{
+					this.$refs.tip.show({
+						title:"您还未认证！",
+						type:"warning",
+						duration:1500,
+						callback:function(){
+							uni.navigateBack({})
+						}
+					})
+				}
 			},
 			clickApply() {	
 				if(this.user_type == "管理员"){
