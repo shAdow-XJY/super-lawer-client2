@@ -36,6 +36,7 @@
             }
             
         }
+
         ,{
             "path" : "pages/register/register",
             "style" :                                                                                    
@@ -102,7 +103,43 @@
             "path" : "pages/project/projectList",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "业务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/newProjectList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新分配业务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/dealingProjectList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "在办业务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/project/endedProjectList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "已结束业务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/archive/archive",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "归档详情",
                 "enablePullDownRefresh": false
             }
             
