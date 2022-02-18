@@ -239,7 +239,17 @@ var _enterprise = __webpack_require__(/*! ../../network/enterprise.js */ 131); /
 //
 //
 //
-var _default = { data: function data() {return { projectId: '', projectStatus: '', action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", linkImg: '', src: '' };}, computed: { user_type: function user_type() {return getApp().globalData.user_type;} }, methods: { onSuccess: function onSuccess(data) {var _this = this;console.log(data);this.linkImg = data.data.url;var params = { token: getApp().globalData.user_token };(0, _enterprise.uploadPaying)(params, this.projectId, this.linkImg).then(function (res) {console.log(res);if (res.data.code == 1) {_this.$refs.tip.show({ title: "已提交支付凭证，请等待管理员审核！", type: "success", duration: 1500, callback: function callback() {uni.navigateBack({});} });
+var _default = { data: function data() {return { projectId: '', projectStatus: '', action: "http://112.74.166.85:9000/v1/file/upload?module=user-cover", linkImg: '', src: '', is_payment: '' };}, computed: { user_type: function user_type() {return getApp().globalData.user_type;} }, methods: { onSuccess: function onSuccess(data) {var _this = this;console.log(data);this.linkImg = data.data.url;var that = this;var params = { token: getApp().globalData.user_token };(0, _enterprise.uploadPaying)(params, this.projectId, this.linkImg).then(function (res) {console.log(res);if (res.data.code == 1) {_this.$refs.tip.show({ title: "已提交支付凭证，请等待管理员审核！", type: "success", duration: 1500, callback: function callback() {
+              uni.navigateBack({
+                success: function success(res) {
+                  var pages = getCurrentPages();
+                  console.log(pages);
+                  var page = pages[pages.length - 1];
+                  if (!page) return;
+                  page.$vm.isPaying(that.linkImg);
+                } });
+
+            } });
 
         }
       });
@@ -259,7 +269,17 @@ var _default = { data: function data() {return { projectId: '', projectStatus: '
             type: "success",
             duration: 1500,
             callback: function callback() {
-              uni.navigateBack({});
+              uni.navigateBack({
+                success: function success(res) {
+                  var pages = getCurrentPages();
+                  console.log(pages);
+                  var page = pages[pages.length - 1];
+                  if (!page) return;
+                  page.$vm.getProjectDetail().then(function (res) {
+                    page.$vm.is_payment = true;
+                  });
+                } });
+
             } });
 
         }
@@ -270,7 +290,13 @@ var _default = { data: function data() {return { projectId: '', projectStatus: '
     console.log(data);
     this.projectId = data.id;
     this.projectStatus = data.status;
-    this.src = JSON.parse(decodeURIComponent(data.url));
+    if (data.url) {
+      this.src = JSON.parse(decodeURIComponent(data.url));
+    }
+    if (data.is_payment) {
+      this.is_payment = data.is_payment;
+    }
+
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

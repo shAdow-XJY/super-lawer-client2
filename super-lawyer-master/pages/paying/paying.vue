@@ -16,7 +16,7 @@
 		<view class="paying" v-if="src != ''">
 			<u-image width="650rpx" height="600rpx" border-radius="10rpx" :src="src"></u-image>	
 		</view>			
-		<view class="btn" v-if="user_type =='管理员'">
+		<view class="btn" v-if="user_type =='管理员' && src && !is_payment">
 			<u-row gutter="12">
 				<u-col span="5" >
 					<u-button type="primary" @click="confirm(1)">同意</u-button>
@@ -39,7 +39,8 @@
 				projectStatus:'',
 				action:"http://112.74.166.85:9000/v1/file/upload?module=user-cover",
 				linkImg:'',
-				src:''
+				src:'',
+				is_payment:''
 			}
 		},
 		computed:{
@@ -51,6 +52,7 @@
 		 onSuccess(data){
 			console.log(data);
 			this.linkImg=data.data.url
+			let that = this
 			let params ={
 				token:getApp().globalData.user_token
 			}
@@ -62,7 +64,15 @@
 						type:"success",
 						duration:1500,
 						callback:function(){
-							uni.navigateBack({})
+							uni.navigateBack({
+								success:(res)=>{
+									let pages = getCurrentPages()
+									console.log(pages)
+									let page = pages[pages.length - 1]
+									if(!page)return;
+									page.$vm.isPaying(that.linkImg)
+								}
+							})						
 						}
 					})
 				}
@@ -83,7 +93,17 @@
 							type:"success",
 							duration:1500,
 							callback:function(){
-								uni.navigateBack({})
+								uni.navigateBack({	
+									success:(res)=>{
+										let pages = getCurrentPages()
+										console.log(pages)
+										let page = pages[pages.length - 1]
+										if(!page)return;
+										page.$vm.getProjectDetail().then(res =>{
+											page.$vm.is_payment = true;
+										})
+									}
+								})
 							}
 						})
 					}
@@ -94,7 +114,13 @@
 			console.log(data)
 			this.projectId = data.id;
 			this.projectStatus = data.status;
-			this.src = JSON.parse(decodeURIComponent(data.url));
+			if(data.url){
+				this.src = JSON.parse(decodeURIComponent(data.url));
+			}
+			if(data.is_payment){
+				this.is_payment = data.is_payment;
+			}
+			
 		}
 	}
 </script>

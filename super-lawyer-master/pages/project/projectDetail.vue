@@ -71,9 +71,6 @@
 					},
 					{
 						'name':'项目文档'
-					},
-					{
-						'name':'文档模板'
 					}
 				],
 				titlestyle:{
@@ -146,7 +143,7 @@
 					this.show =	false									
 				})
 			},
-			async getProjectDetail(projectId){
+			async getProjectDetail(projectId = this.projectId){
 				let params = {
 					token:getApp().globalData.user_token
 				}
@@ -171,8 +168,15 @@
 				})
 			},
 			confirmPaying(){
+				let url = "../paying/paying?id=" + this.projectId + "&status=" + this.project_status ;
+				if(this.pay_picture_url){
+					url += "&url=" +encodeURIComponent(JSON.stringify(this.pay_picture_url));
+				}
+				if(this.is_payment){
+					url += "&is_payment=" + 1
+				}
 				uni.navigateTo({
-					url:"../paying/paying?id=" + this.projectId + "&status=" + this.project_status +" &url=" + encodeURIComponent(JSON.stringify(this.pay_picture_url))
+					url:url
 				})
 			}
 		},
@@ -180,7 +184,7 @@
 			let params = {
 				token:getApp().globalData.user_token
 			}
-			this.getProjectDetail(this.projectId); 
+			// this.getProjectDetail(this.projectId); 
 			getLawyers(params).then(res =>{
 				if(res.data.code === 1){
 					this.lawyers =  res.data.data.lawers
@@ -189,6 +193,7 @@
 		},
 		onLoad(option){
 			this.projectId = option.project_Id
+			this.getProjectDetail(this.projectId)
 			// this.$watch(function(){return this.info[7].value},function(newVal,oldVal){console.log(newVal);console.log(oldVal)},{immediate:true})
 		},
 		destroyed(){

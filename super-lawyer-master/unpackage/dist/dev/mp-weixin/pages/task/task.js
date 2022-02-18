@@ -280,6 +280,7 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70);function _interop
         'margin-top': '0rpx' },
 
       project_detail: {},
+      paying_img: "",
       modelShow: false,
       update: true };
 
@@ -353,6 +354,7 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70);function _interop
                                                   console.log(res.data.data.proj_detail);
                                                   if (res.data.data.proj_detail.status != 1) {
                                                     _this.project_detail = res.data.data.proj_detail;
+                                                    _this.paying_img = _this.project_detail.pay_picture_url;
                                                     _this.project_detail.commit_time = (0, _util.formateDate)(_this.project_detail.commit_time);
                                                     _this.project_detail.create_time = (0, _util.formateDate)(_this.project_detail.create_time);
                                                     _this.project_detail.end_time = (0, _util.formateDate)(_this.project_detail.end_time);
@@ -365,8 +367,36 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70);function _interop
 
     },
     uploadPaying: function uploadPaying() {
+      var url = "../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status;
+      if (this.project_detail.pay_picture_url) {
+        url += "&url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url));
+      }
       uni.navigateTo({
-        url: "../paying/paying?id=" + this.project_detail.id + "&status=" + this.project_detail.status + " &url=" + encodeURIComponent(JSON.stringify(this.project_detail.pay_picture_url)) });
+        url: url });
+
+    },
+    getTaskDetail: function getTaskDetail() {var _this2 = this;
+      var params = {
+        token: getApp().globalData.user_token };
+
+      return (0, _project.getProject)(params, this.projectId).then(function (res) {
+        console.log(res.data.data.proj_detail);
+        if (res.data.code === 1) {
+          _this2.project_detail = res.data.data.proj_detail;
+          _this2.paying_img = _this2.project_detail.pay_picture_url;
+          _this2.project_detail.commit_time = (0, _util.formateDate)(_this2.project_detail.commit_time);
+          _this2.project_detail.create_time = (0, _util.formateDate)(_this2.project_detail.create_time);
+          _this2.project_detail.end_time = (0, _util.formateDate)(_this2.project_detail.end_time);
+        }
+      });
+    },
+    isPaying: function isPaying(img_url) {var _this3 = this;
+      this.getTaskDetail().then(function (res) {
+        if (img_url && !_this3.project_detail.pay_picture_url) {
+          _this3.project_detail.pay_picture_url = img_url;
+          _this3.paying_img = img_url;
+        }
+      });
 
     } },
 
@@ -404,23 +434,24 @@ var _util = __webpack_require__(/*! ../../utils/util.js */ 70);function _interop
       }
     } }),
 
-  onShow: function onShow() {var _this2 = this;
-    //模拟获取数据			
-    var params = {
-      token: getApp().globalData.user_token };
-
-    (0, _project.getProject)(params, this.projectId).then(function (res) {
-      console.log(res.data.data.proj_detail);
-      if (res.data.code === 1) {
-        _this2.project_detail = res.data.data.proj_detail;
-        _this2.project_detail.commit_time = (0, _util.formateDate)(_this2.project_detail.commit_time);
-        _this2.project_detail.create_time = (0, _util.formateDate)(_this2.project_detail.create_time);
-        _this2.project_detail.end_time = (0, _util.formateDate)(_this2.project_detail.end_time);
-      }
-    });
+  onShow: function onShow() {
+    // let params = {
+    // 	token : getApp().globalData.user_token
+    // }
+    // getProject(params,this.projectId).then(res=>{
+    // 	console.log(res.data.data.proj_detail)
+    // 	if(res.data.code ===1){
+    // 		this.project_detail = res.data.data.proj_detail
+    // 		this.project_detail.commit_time = formateDate(this.project_detail.commit_time)
+    // 		this.project_detail.create_time = formateDate(this.project_detail.create_time)
+    // 		this.project_detail.end_time = formateDate(this.project_detail.end_time)					
+    // 	}
+    // })
   },
   onLoad: function onLoad(option) {
     this.projectId = option.project_Id;
+    console.log("onload");
+    this.getTaskDetail();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

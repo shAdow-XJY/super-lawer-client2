@@ -1,10 +1,10 @@
 <template>
-	<view>
+	<view>		
 		<view class="header">
 			<view class="bg">
 				<view class="box">
 					<view class="box-hd">
-						<text class="name">{{user.nickname}}</text>
+						<text class="name">{{user.nickname}}</text>				
 						<view class="avator">
 							<u-avatar class="pic" :src="RoleImage" size="200"></u-avatar>
 						</view>
@@ -13,14 +13,14 @@
 						<u-row>
 							<u-col span="6">
 								<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
-									title="认证状态" :label="user_type" :title-style="titlestytle"
-									:label-style="labelstyle">
+									title="认证状态" :label="user_type" :title-style="titlestytle" :label-style="labelstyle"
+									>									
 								</u-cell-item>
 							</u-col>
 							<u-col span="6">
 								<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
-									:title="user_type === '未认证用户'?'注册时间':'认证时间'" :label="user.register_time"
-									:title-style="titlestytle" :label-style="labelstyle">
+									:title="user_type === '未认证用户'?'注册时间':'认证时间'" :label="user.register_time" :title-style="titlestytle" :label-style="labelstyle"
+									>									
 								</u-cell-item>
 							</u-col>
 						</u-row>
@@ -32,7 +32,7 @@
 			<view class="txt">常用操作</view>
 			<view class="op_bt">
 				<u-row>
-					<u-col span="6" v-if="user_type != '管理员'">
+					<u-col span="6" v-if="user_type != '管理员'" >
 						<u-cell-item class="u-cell" :border-bottom="false" bg-color="#ffffff" :arrow="false"
 							title="个人信息" label="查看个人信息" :title-style="titlestytle" :label-style="labelstyle"
 							@click="clickInfo()">
@@ -56,7 +56,7 @@
 			</view>
 		</view>
 		<u-tabbar :list="tabBarList"></u-tabbar>
-		<u-toast :title="result" :type="resultType" ref="tip" />
+		<u-toast :title="result" :type="resultType" ref="tip"/>
 	</view>
 </template>
 
@@ -65,12 +65,10 @@
 	import {
 		getInfo
 	} from "../../network/user.js"
-	import {
+	import{
 		formateDate
-	} from "../../utils/util.js"
-	import {
-		mapGetters
-	} from 'vuex'
+	}from "../../utils/util.js"
+	import {mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -84,7 +82,7 @@
 					'font-size': '25rpx',
 					'letter-spacing': '2rpx'
 				},
-				RoleImage: ""
+				RoleImage:""
 			};
 		},
 		onLoad() {
@@ -97,10 +95,10 @@
 					this.user_type = getApp().globalData.user_type;
 					this.user = res.data.data.basic_info;
 					getApp().globalData.user_info = this.user;
-					this.user.register_time = formateDate(this.user.register_time)
+					this.user.register_time = formateDate(this.user.register_time)				
 					this.RoleImage = this.user.cover
 					console.log(this.RoleImage)
-
+				
 				}
 
 			})
@@ -108,53 +106,57 @@
 		},
 		methods: {
 			clickInfo() {
-				if (this.user_type == "企业用户") {
+				if(this.user_type == "企业用户"){
 					uni.navigateTo({
 						url: '/pages/enterprise/enterpriseDetail'
-					})
-				} else if (this.user_type == "律师用户") {
+					})					
+				}
+				else if(this.user_type =="律师用户"){
 					uni.navigateTo({
 						url: '/pages/lawyer/lawyerDetail'
-					})
-				} else {
+					})		
+				}
+				else{
 					this.$refs.tip.show({
-						title: "您还未认证！",
-						type: "warning",
-						duration: 1500,
-						callback: function() {
+						title:"您还未认证！",
+						type:"warning",
+						duration:1500,
+						callback:function(){
 							uni.navigateBack({})
 						}
 					})
 				}
 			},
-			clickApply() {
-				if (this.user_type == "管理员") {
+			clickApply() {	
+				if(this.user_type == "管理员"){
 					uni.navigateTo({
 						url: '/pages/userApply/userApplyConfirm'
 					})
-				} else if (this.user_type == "未认证用户") {
+				}
+				else if(this.user_type == "未认证用户"){
 					uni.navigateTo({
 						url: '/pages/userApply/userApply'
 					})
-				} else {
+				}
+				else{
 					this.$refs.tip.show({
-						title: "您已经认证！",
-						type: "success",
-						duration: 1500,
-						callback: function() {
+						title:"您已经认证！",
+						type:"success",
+						duration:1500,
+						callback:function(){
 							uni.navigateBack({})
 						}
 					})
 				}
-
+				
 			},
-			exit() {
+			exit(){
 				uni.reLaunch({
-					url: "../login/login"
+					url:"../login/login"
 				})
 			}
 		},
-		computed: {
+		computed:{
 			...mapGetters([
 				'tabBarList'
 			])
@@ -215,7 +217,7 @@
 				margin-top: -60rpx;
 				overflow: hidden;
 
-				.pic {
+				.pic{
 					position: absolute;
 					left: -10rpx;
 				}

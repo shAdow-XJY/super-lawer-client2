@@ -237,10 +237,7 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);function _
         name: '基本信息' },
 
       {
-        'name': '项目文档' },
-
-      {
-        'name': '文档模板' }],
+        'name': '项目文档' }],
 
 
       titlestyle: {
@@ -313,9 +310,9 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);function _
                     _this.show = false;
                   }));case 6:case "end":return _context.stop();}}}, _callee);}))();
     },
-    getProjectDetail: function getProjectDetail(projectId) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getProjectDetail: function getProjectDetail() {var _arguments = arguments,_this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var projectId, params;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:projectId = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : _this2.projectId;
                 params = {
-                  token: getApp().globalData.user_token };_context2.next = 3;return (
+                  token: getApp().globalData.user_token };_context2.next = 4;return (
 
                   (0, _project.getProject)(params, projectId).then(function (res) {
                     if (res.data.code === 1) {
@@ -335,11 +332,18 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);function _
                       _this2.is_payment = detail.is_payment;
                       _this2.pay_picture_url = detail.pay_picture_url;
                     }
-                  }));case 3:case "end":return _context2.stop();}}}, _callee2);}))();
+                  }));case 4:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     confirmPaying: function confirmPaying() {
+      var url = "../paying/paying?id=" + this.projectId + "&status=" + this.project_status;
+      if (this.pay_picture_url) {
+        url += "&url=" + encodeURIComponent(JSON.stringify(this.pay_picture_url));
+      }
+      if (this.is_payment) {
+        url += "&is_payment=" + 1;
+      }
       uni.navigateTo({
-        url: "../paying/paying?id=" + this.projectId + "&status=" + this.project_status + " &url=" + encodeURIComponent(JSON.stringify(this.pay_picture_url)) });
+        url: url });
 
     } },
 
@@ -347,7 +351,7 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);function _
     var params = {
       token: getApp().globalData.user_token };
 
-    this.getProjectDetail(this.projectId);
+    // this.getProjectDetail(this.projectId); 
     (0, _lawyer.getLawyers)(params).then(function (res) {
       if (res.data.code === 1) {
         _this3.lawyers = res.data.data.lawers;
@@ -356,6 +360,7 @@ var _lawyer = __webpack_require__(/*! ../../network/lawyer.js */ 105);function _
   },
   onLoad: function onLoad(option) {
     this.projectId = option.project_Id;
+    this.getProjectDetail(this.projectId);
     // this.$watch(function(){return this.info[7].value},function(newVal,oldVal){console.log(newVal);console.log(oldVal)},{immediate:true})
   },
   destroyed: function destroyed() {
