@@ -38,22 +38,12 @@
 		<u-toast ref="tip"/>
 	</view>
 </template>
-
 <script>
 	import {postLogin} from "../../network/user.js"
 	import {mapState,mapMutations} from 'vuex'
-	export default{
-		
+	export default{	
 		data(){
-			return{
-				// //admin
-				// passport:"admin",
-				// password:"admin",
-				
-				//enter
-				// passport:"test",
-				// password:"test00",
-				
+			return{				
 				//lawyer
 				passport:"510",
 				password:"123456",
@@ -69,15 +59,20 @@
 					pwd:this.password
 				};			
 				postLogin(params).then(res=>{
-					 console.log(res.data.data)
+					 console.log(res)
 					if(res.data.code==1)
 					{
 						getApp().globalData.user_type=res.data.data.user_type;
 						getApp().globalData.user_token=res.data.data.token;
 						console.log(getApp().globalData.user_type)
 						this.setRole(getApp().globalData.user_type)
-						// console.log(res.data.data.token);
-						// console.log(getApp().globalData.user_token);
+						uni.setStorage({
+							key:"loginUser",
+							data:{
+								user_type:res.data.data.user_type,
+								token:res.data.data.token,
+							}
+						})						
 						this.$refs.tip.show({
 							title:"登录成功",
 							type:"success",		
@@ -87,9 +82,7 @@
 							uni.switchTab({
 									url:"../user/user"
 							})
-						},1500)
-						
-						
+						},1500)					
 					}
 					
 				})
@@ -107,6 +100,17 @@
 						url:"../register/register"
 					})
 				},100)
+			}		
+		},
+		created() {
+			const userlogin = uni.getStorageSync("loginUser")
+			if(userlogin){
+				getApp().globalData.user_type=userlogin.user_type;
+				getApp().globalData.user_token=userlogin.token;
+				this.setRole(getApp().globalData.user_type)
+				uni.switchTab({
+						url:"../user/user"
+				})
 			}
 		}
 	}

@@ -10,5 +10,21 @@ export default function(options) {
       success: resolve,
       fail: reject
     })
+  }).then(res =>{  
+	  if(res.data.code == 201){
+		  console.log("token过期")	
+		  uni.showModal({
+		     title: '提示',
+		     content: '身份已过期，请重新登录！',
+			 showCancel:false,
+		     success: function (res) {
+				uni.clearStorageSync();
+		        uni.reLaunch({
+		        	url:"/pages/login/login"
+		        })
+		     }
+		 });
+	  }
+	  return res
   })
 }

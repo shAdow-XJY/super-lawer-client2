@@ -100,7 +100,6 @@
 					console.log(this.RoleImage)
 				
 				}
-
 			})
 
 		},
@@ -151,6 +150,7 @@
 				
 			},
 			exit(){
+				uni.removeStorageSync("loginUser")
 				uni.reLaunch({
 					url:"../login/login"
 				})

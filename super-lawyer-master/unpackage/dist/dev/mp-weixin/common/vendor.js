@@ -2000,9 +2000,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 105:
-/*!****************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/lawyer.js ***!
-  \****************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/lawyer.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2046,9 +2046,9 @@ function ApplyLawyer(params, info) {
 /***/ }),
 
 /***/ 11:
-/*!*************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/index.js ***!
-  \*************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/store/index.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3200,9 +3200,9 @@ var index = {
 /***/ }),
 
 /***/ 122:
-/*!*****************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/service.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/service.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3220,9 +3220,9 @@ function getServiceFangan(params) {
 /***/ }),
 
 /***/ 13:
-/*!**********************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/modules/tabBar.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/store/modules/tabBar.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3263,9 +3263,9 @@ tabBar;exports.default = _default;
 /***/ }),
 
 /***/ 131:
-/*!********************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/enterprise.js ***!
-  \********************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/enterprise.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3311,9 +3311,9 @@ function confirmUploadPaying(params, id, result) {
 /***/ }),
 
 /***/ 14:
-/*!**************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/utils/tabbar.js ***!
-  \**************************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/utils/tabbar.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3384,9 +3384,9 @@ var enterprise = [
 /***/ }),
 
 /***/ 15:
-/*!***************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/store/getters.js ***!
-  \***************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/store/getters.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3401,9 +3401,9 @@ getters;exports.default = _default;
 /***/ }),
 
 /***/ 16:
-/*!****************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/index.js ***!
-  \****************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/index.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3553,9 +3553,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 17:
-/*!***************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/mixin/mixin.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/mixin/mixin.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3627,9 +3627,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 18:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/request/index.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/request/index.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3808,9 +3808,9 @@ new Request();exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!**********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/deepMerge.js ***!
-  \**********************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/deepMerge.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9897,9 +9897,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!**********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/deepClone.js ***!
-  \**********************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/deepClone.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9931,9 +9931,9 @@ deepClone;exports.default = _default;
 /***/ }),
 
 /***/ 21:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/test.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/test.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10173,9 +10173,9 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 /***/ }),
 
 /***/ 22:
-/*!************************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/queryParams.js ***!
-  \************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/queryParams.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10242,9 +10242,9 @@ queryParams;exports.default = _default;
 /***/ }),
 
 /***/ 23:
-/*!******************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/route.js ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/route.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11167,9 +11167,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 269:
-/*!****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/emitter.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/util/emitter.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11227,9 +11227,9 @@ function _broadcast(componentName, eventName, params) {
 /***/ }),
 
 /***/ 27:
-/*!***********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/timeFormat.js ***!
-  \***********************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/timeFormat.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11289,9 +11289,9 @@ timeFormat;exports.default = _default;
 /***/ }),
 
 /***/ 270:
-/*!************************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/async-validator.js ***!
-  \************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/util/async-validator.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12651,7 +12651,7 @@ Schema.warning = warning;
 Schema.messages = messages;var _default =
 
 Schema;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../Program Files/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 271)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../Program Files/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 271)))
 
 /***/ }),
 
@@ -13015,9 +13015,9 @@ var substr = 'ab'.substr(-1) === 'b'
 /***/ }),
 
 /***/ 28:
-/*!*********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/timeFrom.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/timeFrom.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13073,9 +13073,9 @@ timeFrom;exports.default = _default;
 /***/ }),
 
 /***/ 29:
-/*!**************************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/colorGradient.js ***!
-  \**************************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/colorGradient.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13248,9 +13248,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/guid.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/guid.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13300,9 +13300,9 @@ guid;exports.default = _default;
 /***/ }),
 
 /***/ 31:
-/*!******************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/color.js ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/color.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13348,9 +13348,9 @@ color;exports.default = _default;
 /***/ }),
 
 /***/ 32:
-/*!**********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/type2icon.js ***!
-  \**********************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/type2icon.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13394,9 +13394,9 @@ type2icon;exports.default = _default;
 /***/ }),
 
 /***/ 322:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/province.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/util/province.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13406,9 +13406,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 323:
-/*!*************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/city.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/util/city.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13418,9 +13418,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 324:
-/*!*************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/util/area.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/util/area.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13430,9 +13430,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 33:
-/*!************************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/randomArray.js ***!
-  \************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/randomArray.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13448,9 +13448,9 @@ randomArray;exports.default = _default;
 /***/ }),
 
 /***/ 34:
-/*!********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/addUnit.js ***!
-  \********************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/addUnit.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13467,9 +13467,9 @@ function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefin
 /***/ }),
 
 /***/ 35:
-/*!*******************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/random.js ***!
-  \*******************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/random.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13488,9 +13488,9 @@ random;exports.default = _default;
 /***/ }),
 
 /***/ 353:
-/*!**************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/file.js ***!
-  \**************************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/file.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13511,9 +13511,9 @@ function upLoadFile(params)
 /***/ }),
 
 /***/ 36:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/trim.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/trim.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13537,9 +13537,9 @@ trim;exports.default = _default;
 /***/ }),
 
 /***/ 37:
-/*!******************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/toast.js ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/toast.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13558,9 +13558,9 @@ toast;exports.default = _default;
 /***/ }),
 
 /***/ 38:
-/*!**********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/getParent.js ***!
-  \**********************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/getParent.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13616,9 +13616,9 @@ function getParent(name, keys) {
 /***/ }),
 
 /***/ 39:
-/*!********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/$parent.js ***!
-  \********************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/$parent.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13645,9 +13645,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 4:
-/*!*********************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/pages.json ***!
-  \*********************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/pages.json ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -13656,9 +13656,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 40:
-/*!****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/sys.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/sys.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13675,9 +13675,9 @@ function sys() {
 /***/ }),
 
 /***/ 41:
-/*!*********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/debounce.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/debounce.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13715,9 +13715,9 @@ debounce;exports.default = _default;
 /***/ }),
 
 /***/ 42:
-/*!*********************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/function/throttle.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/function/throttle.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13758,9 +13758,9 @@ throttle;exports.default = _default;
 /***/ }),
 
 /***/ 43:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/config/config.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/config/config.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13782,9 +13782,9 @@ var version = '1.8.4';var _default =
 /***/ }),
 
 /***/ 44:
-/*!*****************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/uview-ui/libs/config/zIndex.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/uview-ui/libs/config/zIndex.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13812,9 +13812,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 51:
-/*!**************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/user.js ***!
-  \**************************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/user.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13915,9 +13915,9 @@ function getAuthStatus(params) {
 /***/ }),
 
 /***/ 52:
-/*!****************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/config.js ***!
-  \****************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/config.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13934,6 +13934,22 @@ function _default(options) {
       success: resolve,
       fail: reject });
 
+  }).then(function (res) {
+    if (res.data.code == 201) {
+      console.log("token过期");
+      uni.showModal({
+        title: '提示',
+        content: '身份已过期，请重新登录！',
+        showCancel: false,
+        success: function success(res) {
+          uni.clearStorageSync();
+          uni.reLaunch({
+            url: "/pages/login/login" });
+
+        } });
+
+    }
+    return res;
   });
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
@@ -13941,9 +13957,9 @@ function _default(options) {
 /***/ }),
 
 /***/ 61:
-/*!*************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/msg.js ***!
-  \*************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/msg.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13986,9 +14002,9 @@ function sendMsg(params)
 /***/ }),
 
 /***/ 70:
-/*!************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/utils/util.js ***!
-  \************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/utils/util.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14006,9 +14022,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.formateDat
 /***/ }),
 
 /***/ 79:
-/*!*****************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/network/project.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/network/project.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14100,9 +14116,9 @@ function getFeeProject(params) {
 /***/ }),
 
 /***/ 88:
-/*!***************************************************************************************************!*\
-  !*** C:/Users/80976/Desktop/super-lawyer-master/super-lawyer-master/js_sdk/mineking-tool/tool.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Users/80976/Desktop/Web前端/superlawyer/super-lawyer-master/js_sdk/mineking-tool/tool.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
