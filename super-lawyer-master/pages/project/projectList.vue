@@ -143,7 +143,7 @@
 				'tabBarList'
 			])
 		},
-	  onLoad(){
+	   onLoad(){
 			this.user_type = getApp().globalData.user_type
 			this.updateProjectsList()
 		}

@@ -12,7 +12,7 @@ export default function(options) {
     })
   }).then(res =>{  
 	  if(res.data.code == 201){
-		  console.log("token过期")	
+		  //console.log("token过期")	
 		  uni.showModal({
 		     title: '提示',
 		     content: '身份已过期，请重新登录！',

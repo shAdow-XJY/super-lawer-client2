@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/message/message",
     "pages/user/user",
     "pages/task/task",
     "pages/register/register",
@@ -11,6 +10,7 @@
     "pages/service/serviceFangan",
     "pages/enterprise/enterpriseDetail",
     "pages/message/enterpriseMessage",
+    "pages/message/message",
     "pages/project/projectList",
     "pages/lawyer/lawyerDetail",
     "pages/project/createNewProject",

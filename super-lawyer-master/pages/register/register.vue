@@ -115,7 +115,7 @@
 				}
 				else{
 					let params = {
-						check_code:parseInt(this.form.check_code),
+						check_code:this.form.check_code,
 						cover:this.linkImg,
 						email:this.form.email,
 						passport:this.form.passport,
@@ -184,13 +184,9 @@
 						type:this.resultType,							
 					})
 				},1300)
-				// console.log('result');
-				// console.log('resultType');
-				// console.log(this.result);
-				// console.log(this.resultType);
 			},
 		  async registerButton(){			
-				await this.$refs.uUpload.upload()						
+				await this.$refs.uUpload.upload()	
 			}			
 	}
 }

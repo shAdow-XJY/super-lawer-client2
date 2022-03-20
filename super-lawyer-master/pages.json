@@ -9,15 +9,6 @@
 				"navigationBarTitleText": "登录页面"
 			}
 		}
-	    ,{
-            "path" : "pages/message/message",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
         ,{
             "path" : "pages/user/user",
             "style" :                                                                                    
@@ -97,7 +88,16 @@
                 "enablePullDownRefresh": false
             }
             
-        }
+        },
+		{
+		    "path" : "pages/message/message",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/project/projectList",
             "style" :                                                                                    

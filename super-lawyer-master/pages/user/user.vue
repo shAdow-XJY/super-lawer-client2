@@ -97,8 +97,7 @@
 					getApp().globalData.user_info = this.user;
 					this.user.register_time = formateDate(this.user.register_time)				
 					this.RoleImage = this.user.cover
-					console.log(this.RoleImage)
-				
+					console.log(this.RoleImage)		
 				}
 			})
 

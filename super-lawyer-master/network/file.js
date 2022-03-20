@@ -1,6 +1,4 @@
 import request from "./config.js"
-//!!!!未写！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-// uploadFile
 export function upLoadFile(params)
 {
 	return request({
