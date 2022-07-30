@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "chat-bottom": "/pages/chat-room/components/chat-bottom"
+  }
+}

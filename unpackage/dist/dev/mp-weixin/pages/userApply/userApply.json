@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-subsection": "/uview-ui/components/u-subsection/u-subsection",
+    "u-form": "/uview-ui/components/u-form/u-form",
+    "u-form-item": "/uview-ui/components/u-form-item/u-form-item",
+    "u-input": "/uview-ui/components/u-input/u-input",
+    "u-upload": "/uview-ui/components/u-upload/u-upload",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "u-action-sheet": "/uview-ui/components/u-action-sheet/u-action-sheet",
+    "u-select": "/uview-ui/components/u-select/u-select",
+    "u-toast": "/uview-ui/components/u-toast/u-toast"
+  }
+}

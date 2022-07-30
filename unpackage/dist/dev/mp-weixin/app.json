@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/message/message",
+    "pages/user/user",
+    "pages/task/task",
+    "pages/register/register",
+    "pages/userInfo/userInfo",
+    "pages/userApply/userApply",
+    "pages/project/projectDetail",
+    "pages/service/serviceFangan",
+    "pages/enterprise/enterpriseDetail",
+    "pages/message/enterpriseMessage",
+    "pages/project/projectList",
+    "pages/lawyer/lawyerDetail",
+    "pages/project/createNewProject",
+    "pages/chat-room/chat-room",
+    "pages/userApply/userApplyConfirm",
+    "pages/userApply/userApplyConfirmDetail",
+    "pages/paying/paying"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "SuperLawyer",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "业务详情",
+        "pagePath": "pages/project/projectList",
+        "iconPath": "static/recevingOrder.png",
+        "selectedIconPath": "static/recevingOrder-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/user",
+        "iconPath": "static/person.png",
+        "selectedIconPath": "static/person-active.png"
+      },
+      {
+        "text": "企业消息",
+        "pagePath": "pages/message/enterpriseMessage",
+        "iconPath": "static/person.png",
+        "selectedIconPath": "static/person-active.png"
+      },
+      {
+        "text": "业务",
+        "pagePath": "pages/project/projectList"
+      },
+      {
+        "text": "律师消息",
+        "pagePath": "pages/message/message"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
